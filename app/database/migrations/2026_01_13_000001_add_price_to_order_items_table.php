@@ -9,14 +9,20 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('order_items', function (Blueprint $table) {
-            $table->decimal('price', 12, 2)->nullable()->after('product_sku');
+            if (Schema::hasColumn('order_items', 'product_sku')) {
+                $table->decimal('price', 12, 2)->nullable()->after('product_sku');
+            } else {
+                $table->decimal('price', 12, 2)->nullable();
+            }
         });
     }
 
     public function down(): void
     {
         Schema::table('order_items', function (Blueprint $table) {
-            $table->dropColumn('price');
+            if (Schema::hasColumn('order_items', 'price')) {
+                $table->dropColumn('price');
+            }
         });
     }
 };
