@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('customer_user_id')->nullable();
             $table->string('session_id')->nullable();
             $table->timestamps();
+            $table->softDeletes();
 
             // Foreign keys
             $table->foreign('customer_user_id')
@@ -26,8 +27,7 @@ return new class extends Migration
             // Indexes
             $table->index('customer_user_id');
             $table->index('session_id');
-            $table->unique(['customer_user_id', 'deleted_at'], 'unique_active_customer_cart')
-                  ->where('deleted_at', null);
+            $table->unique(['customer_user_id', 'deleted_at'], 'unique_active_customer_cart');
         });
     }
 
