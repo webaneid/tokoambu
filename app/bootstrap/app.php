@@ -37,6 +37,11 @@ return Application::configure(basePath: dirname(__DIR__))
             'permission' => PermissionMiddleware::class,
             'role_or_permission' => RoleOrPermissionMiddleware::class,
         ]);
+        $middleware->redirectGuestsTo(function ($request) {
+            return $request->getHost() === 'admin.tokoambu.com'
+                ? route('login')
+                : route('customer.login');
+        });
         $middleware->validateCsrfTokens(except: [
             '/ipaymu/notify',
         ]);
