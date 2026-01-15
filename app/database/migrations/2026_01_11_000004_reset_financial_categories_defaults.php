@@ -9,7 +9,7 @@ return new class extends Migration
     {
         $now = now();
 
-        DB::table('financial_categories')->truncate();
+        DB::table('financial_categories')->delete();
         DB::table('financial_categories')->insert([
             // Income categories
             ['name' => 'Order', 'type' => 'income', 'is_active' => true, 'is_default' => true, 'created_at' => $now, 'updated_at' => $now],
