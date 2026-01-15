@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn('preorder_eta_date');
-        });
+        if (Schema::hasColumn('products', 'preorder_eta_date')) {
+            Schema::table('products', function (Blueprint $table) {
+                $table->dropColumn('preorder_eta_date');
+            });
+        }
     }
 
     /**
@@ -21,8 +23,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->date('preorder_eta_date')->nullable()->after('allow_preorder');
-        });
+        if (!Schema::hasColumn('products', 'preorder_eta_date')) {
+            Schema::table('products', function (Blueprint $table) {
+                $table->date('preorder_eta_date')->nullable()->after('allow_preorder');
+            });
+        }
     }
 };
