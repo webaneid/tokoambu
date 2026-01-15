@@ -1,0 +1,94 @@
+/**
+ * COMPONENTS — CATEGORY CIRCLES
+ * ==============================
+ * Horizontal scrolling category icons
+ */
+
+@use '../abstracts/mixins' as *;
+
+.category-circles {
+  display: flex;
+  gap: var(--ane-spacing-lg);
+  overflow-x: auto;
+  padding-bottom: var(--ane-spacing-sm);
+  margin-bottom: var(--ane-spacing-xl);
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.category-circle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ane-spacing-sm);
+  @include smooth-transition;
+  min-width: 70px;
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &__icon {
+    @include flex-center;
+    width: 60px;
+    height: 60px;
+    border-radius: var(--ane-radius-full);
+    background: var(--ane-color-gray-100);
+    @include smooth-transition;
+    position: relative;
+    overflow: hidden;
+
+    img {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+    }
+
+    svg {
+      width: 28px;
+      height: 28px;
+      color: var(--ane-color-gray-500);
+    }
+  }
+
+  &__initial {
+    font-size: var(--ane-font-size-lg);
+    font-weight: var(--ane-font-weight-bold);
+    color: var(--ane-color-text-secondary);
+    text-transform: uppercase;
+    @include smooth-transition;
+  }
+
+  &__label {
+    font-size: var(--ane-font-size-xs);
+    font-weight: var(--ane-font-weight-medium);
+    color: var(--ane-color-text-secondary);
+    text-align: center;
+    @include line-clamp(2);
+    max-width: 70px;
+  }
+
+  // Active state
+  &.active {
+    .category-circle__icon {
+      background: var(--ane-color-primary);
+
+      svg {
+        color: var(--ane-color-light);
+      }
+    }
+
+    .category-circle__initial {
+      color: var(--ane-color-light);
+    }
+
+    .category-circle__label {
+      color: var(--ane-color-primary);
+      font-weight: var(--ane-font-weight-semibold);
+    }
+  }
+}

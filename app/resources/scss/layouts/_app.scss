@@ -1,0 +1,35 @@
+/**
+ * LAYOUTS — APP CONTAINER
+ * =======================
+ * Main app wrapper for mobile-first design
+ */
+
+@use '../abstracts/mixins' as *;
+
+.storefront-app {
+  max-width: var(--ane-max-width-mobile);
+  width: 100%;
+  margin: 0 auto;
+  background: var(--ane-color-light);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  // Desktop: add subtle shadow
+  @include respond-to('lg') {
+    box-shadow: var(--ane-shadow-xl);
+  }
+}
+
+.storefront-main {
+  flex: 1;
+  padding-bottom: calc(var(--ane-bottom-nav-height) + var(--ane-spacing-lg));
+}
+
+// Desktop background gradient
+body {
+  @include respond-to('lg') {
+    background: linear-gradient(135deg, #FFF5F0 0%, #F0F4FF 100%);
+  }
+}

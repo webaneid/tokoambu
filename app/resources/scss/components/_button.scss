@@ -1,0 +1,108 @@
+/**
+ * COMPONENTS — BUTTONS
+ * ====================
+ * Button styles with variants
+ */
+
+@use '../abstracts/mixins' as *;
+
+.btn {
+  @include flex-center;
+  gap: var(--ane-spacing-sm);
+  padding: var(--ane-spacing-md) var(--ane-spacing-xl);
+  font-size: var(--ane-font-size-base);
+  font-weight: var(--ane-font-weight-semibold);
+  font-family: var(--ane-font-family-base);
+  line-height: 1;
+  border: none;
+  border-radius: var(--ane-radius-lg);
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  @include smooth-transition;
+  @include touch-target;
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+  }
+
+  // Primary Button (Orange)
+  &-primary {
+    background: var(--ane-color-primary);
+    color: var(--ane-color-light);
+    box-shadow: 0 2px 8px rgba(var(--ane-color-primary-rgb, 241, 123, 13), 0.2);
+
+    &:active:not(:disabled) {
+      background: var(--ane-color-primary-hover);
+    }
+  }
+  &--primary {
+    background: var(--ane-color-primary);
+    color: var(--ane-color-light);
+    box-shadow: 0 2px 8px rgba(var(--ane-color-primary-rgb, 241, 123, 13), 0.2);
+
+    &:active:not(:disabled) {
+      background: var(--ane-color-primary-hover);
+    }
+  }
+
+  // Secondary Button (Outline)
+  &-secondary {
+    background: transparent;
+    color: var(--ane-color-primary);
+    border: 2px solid var(--ane-color-primary);
+
+    &:active:not(:disabled) {
+      background: var(--ane-color-primary-light);
+    }
+  }
+
+  // Ghost Button (Text only)
+  &-ghost {
+    background: transparent;
+    color: var(--ane-color-text-secondary);
+    padding: var(--ane-spacing-sm) var(--ane-spacing-md);
+
+    &:active:not(:disabled) {
+      color: var(--ane-color-primary);
+      background: var(--ane-color-light-gray);
+    }
+  }
+
+  // Size variants
+  &-sm {
+    padding: var(--ane-spacing-sm) var(--ane-spacing-lg);
+    font-size: var(--ane-font-size-sm);
+    min-height: 36px;
+  }
+
+  &-lg {
+    padding: var(--ane-spacing-lg) var(--ane-spacing-2xl);
+    font-size: var(--ane-font-size-lg);
+    min-height: 52px;
+  }
+
+  // Block button (full width)
+  &-block {
+    width: 100%;
+  }
+
+  // Icon button (square)
+  &-icon {
+    padding: var(--ane-spacing-md);
+    width: 44px;
+    height: 44px;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+

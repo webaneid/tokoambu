@@ -1,0 +1,280 @@
+/**
+ * PAGES — AUTH
+ * ============
+ * Authentication pages (login, register, forgot password)
+ */
+
+@use '../abstracts/mixins' as *;
+
+// ============================================================================
+// HEADER
+// ============================================================================
+
+.auth-header {
+  @include flex-between;
+  padding: var(--ane-spacing-lg);
+  background: var(--ane-color-light);
+  border-bottom: 1px solid var(--ane-color-gray-200);
+  position: sticky;
+  top: 0;
+  z-index: var(--ane-z-fixed);
+}
+
+.auth-title {
+  font-size: var(--ane-font-size-xl);
+  font-weight: var(--ane-font-weight-bold);
+  color: var(--ane-color-text-primary);
+  margin: 0;
+}
+
+// ============================================================================
+// CONTENT
+// ============================================================================
+
+.auth-content {
+  padding: var(--ane-spacing-xl) var(--ane-spacing-lg);
+  padding-bottom: calc(var(--ane-spacing-2xl) + env(safe-area-inset-bottom));
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+// ============================================================================
+// ILLUSTRATION
+// ============================================================================
+
+.auth-illustration {
+  @include flex-center;
+  margin-bottom: var(--ane-spacing-2xl);
+
+  svg {
+    color: var(--ane-color-primary);
+  }
+}
+
+// ============================================================================
+// WELCOME SECTION
+// ============================================================================
+
+.auth-welcome {
+  text-align: center;
+  margin-bottom: var(--ane-spacing-2xl);
+}
+
+.auth-welcome-title {
+  font-size: var(--ane-font-size-2xl);
+  font-weight: var(--ane-font-weight-bold);
+  color: var(--ane-color-text-primary);
+  margin: 0 0 var(--ane-spacing-sm) 0;
+}
+
+.auth-welcome-text {
+  font-size: var(--ane-font-size-sm);
+  color: var(--ane-color-text-muted);
+  margin: 0;
+}
+
+// ============================================================================
+// ALERT MESSAGES
+// ============================================================================
+
+.auth-alert {
+  padding: var(--ane-spacing-lg);
+  border-radius: var(--ane-radius-xl);
+  margin-bottom: var(--ane-spacing-xl);
+}
+
+.auth-alert-error {
+  background: rgba(208, 0, 134, 0.1);
+  border: 1px solid rgba(208, 0, 134, 0.2);
+}
+
+.auth-alert-success {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.auth-alert-text {
+  font-size: var(--ane-font-size-sm);
+  margin: 0;
+
+  .auth-alert-error & {
+    color: #d00086;
+  }
+
+  .auth-alert-success & {
+    color: #10b981;
+  }
+
+  & + & {
+    margin-top: var(--ane-spacing-xs);
+  }
+}
+
+// ============================================================================
+// FORM
+// ============================================================================
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ane-spacing-xl);
+}
+
+// Form Group
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ane-spacing-sm);
+}
+
+.form-label {
+  font-size: var(--ane-font-size-sm);
+  font-weight: var(--ane-font-weight-semibold);
+  color: var(--ane-color-text-primary);
+  margin: 0;
+}
+
+.form-input {
+  width: 100%;
+  padding: var(--ane-spacing-lg);
+  font-size: var(--ane-font-size-base);
+  color: var(--ane-color-text-primary);
+  background: var(--ane-color-light);
+  border: 1px solid var(--ane-color-gray-200);
+  border-radius: var(--ane-radius-xl);
+  @include smooth-transition;
+  @include touch-target;
+
+  &::placeholder {
+    color: var(--ane-color-gray-400);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--ane-color-primary);
+    box-shadow: 0 0 0 3px rgba(var(--ane-color-primary-rgb, 241, 123, 13), 0.1);
+  }
+}
+
+.form-input-error {
+  border-color: #d00086;
+
+  &:focus {
+    border-color: #d00086;
+    box-shadow: 0 0 0 3px rgba(208, 0, 134, 0.1);
+  }
+}
+
+.form-error {
+  font-size: var(--ane-font-size-xs);
+  color: #d00086;
+  margin: 0;
+}
+
+.form-hint {
+  font-size: var(--ane-font-size-xs);
+  color: var(--ane-color-text-muted);
+  margin: 0;
+}
+
+// Checkbox
+.form-checkbox {
+  display: flex;
+  align-items: center;
+  gap: var(--ane-spacing-sm);
+}
+
+.checkbox-input {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--ane-color-gray-200);
+  border-radius: var(--ane-radius-sm);
+  cursor: pointer;
+  @include smooth-transition;
+
+  &:checked {
+    background: var(--ane-color-primary);
+    border-color: var(--ane-color-primary);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(var(--ane-color-primary-rgb, 241, 123, 13), 0.1);
+  }
+}
+
+.checkbox-label {
+  font-size: var(--ane-font-size-sm);
+  color: var(--ane-color-text-secondary);
+  margin: 0;
+  cursor: pointer;
+}
+
+// ============================================================================
+// LINKS
+// ============================================================================
+
+.auth-links {
+  text-align: center;
+  margin-top: calc(var(--ane-spacing-xl) * -1);
+}
+
+.auth-link {
+  font-size: var(--ane-font-size-sm);
+  font-weight: var(--ane-font-weight-semibold);
+  color: var(--ane-color-primary);
+  text-decoration: none;
+  @include smooth-transition;
+
+  &:active {
+    color: var(--ane-color-primary-hover);
+  }
+}
+
+// ============================================================================
+// FOOTER
+// ============================================================================
+
+.auth-footer {
+  text-align: center;
+  margin-top: calc(var(--ane-spacing-xl) * -1);
+  padding-top: var(--ane-spacing-xl);
+  border-top: 1px solid var(--ane-color-gray-200);
+}
+
+.auth-footer-text {
+  font-size: var(--ane-font-size-sm);
+  color: var(--ane-color-text-muted);
+}
+
+.auth-footer-link {
+  font-size: var(--ane-font-size-sm);
+  font-weight: var(--ane-font-weight-semibold);
+  color: var(--ane-color-primary);
+  text-decoration: none;
+  margin-left: var(--ane-spacing-xs);
+  @include smooth-transition;
+
+  &:active {
+    color: var(--ane-color-primary-hover);
+  }
+}
+
+// ============================================================================
+// RESPONSIVE
+// ============================================================================
+
+@media (max-width: 360px) {
+  .auth-content {
+    padding: var(--ane-spacing-lg) var(--ane-spacing-md);
+  }
+
+  .auth-illustration svg {
+    width: 64px;
+    height: 64px;
+  }
+
+  .auth-welcome-title {
+    font-size: var(--ane-font-size-xl);
+  }
+}

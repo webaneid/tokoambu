@@ -1,0 +1,134 @@
+/**
+ * COMPONENTS — HERO BANNER
+ * =========================
+ * Promotional banner at the top
+ */
+
+@use '../abstracts/mixins' as *;
+
+.hero-banner {
+  position: relative;
+  margin-bottom: var(--ane-spacing-xl);
+  border-radius: var(--ane-radius-3xl);
+  overflow: hidden;
+
+  &__track {
+    display: flex;
+    width: 100%;
+    height: auto;
+    transition: transform 0.5s ease;
+    will-change: transform;
+  }
+
+  &__slide {
+    min-width: 100%;
+    position: relative;
+    @include flex-between;
+    gap: var(--ane-spacing-lg);
+    min-height: 180px;
+    padding: var(--ane-spacing-2xl);
+    border-radius: var(--ane-radius-3xl);
+    background: linear-gradient(135deg, var(--ane-color-primary) 0%, var(--ane-color-secondary) 100%);
+    overflow: hidden;
+  }
+
+  &__slide--image {
+    padding: 0;
+    align-items: stretch;
+    background: transparent;
+    min-height: auto;
+    border-radius: inherit;
+    overflow: hidden;
+  }
+
+  &__content {
+    flex: 1;
+    z-index: 1;
+  }
+
+  &__title {
+    font-size: 28px;
+    font-weight: var(--ane-font-weight-extrabold);
+    line-height: 1.1;
+    letter-spacing: -0.4px;
+    color: var(--ane-color-dark);
+    margin: 0 0 var(--ane-spacing-xl) 0;
+    color: var(--ane-color-light);
+
+    .highlight {
+      display: block;
+      font-size: 18px;
+    }
+  }
+
+  &__subtitle {
+    font-size: var(--ane-font-size-sm);
+    font-weight: var(--ane-font-weight-semibold);
+    color: var(--ane-color-dark);
+    margin-bottom: var(--ane-spacing-lg);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  &__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ane-spacing-sm);
+    padding: 12px 24px;
+    background: var(--ane-color-dark);
+    color: var(--ane-color-light);
+    font-size: var(--ane-font-size-sm);
+    font-weight: var(--ane-font-weight-semibold);
+    border-radius: var(--ane-radius-full);
+    @include smooth-transition;
+    border: none;
+    cursor: pointer;
+
+    &:active {
+      transform: scale(0.95);
+    }
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  &__image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  &__image-link {
+    display: block;
+    width: 100%;
+    line-height: 0;
+    border-radius: inherit;
+  }
+
+  // Dots indicator (if carousel)
+  &__dots {
+    position: absolute;
+    bottom: var(--ane-spacing-md);
+    left: var(--ane-spacing-2xl);
+    @include flex-center;
+    gap: 6px;
+    z-index: 1;
+  }
+
+  &__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: var(--ane-radius-full);
+    background: rgba(0, 0, 0, 0.2);
+    @include smooth-transition;
+
+    &.active {
+      width: 20px;
+      background: var(--ane-color-dark);
+    }
+  }
+}

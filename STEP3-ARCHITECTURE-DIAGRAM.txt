@@ -1,0 +1,415 @@
+╔════════════════════════════════════════════════════════════════════════════════╗
+║                   STEP 3: AUTH CONTROLLERS ARCHITECTURE                        ║
+╚════════════════════════════════════════════════════════════════════════════════╝
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         STOREFRONT AUTHENTICATION FLOW                      │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+1. REGISTRATION FLOW
+═══════════════════════════════════════════════════════════════════════════════
+
+  ┌────────────────────┐
+  │ User Visits        │
+  │ /account/register  │
+  └──────────┬─────────┘
+             │
+             ▼
+  ┌────────────────────────────────────────────┐
+  │ CustomerRegisterController@create()        │
+  │ - Returns registration blade form          │
+  └──────────┬─────────────────────────────────┘
+             │
+             ▼
+  ┌────────────────────┐
+  │ User Submits       │
+  │ Form Data          │
+  │ (name, email,      │
+  │  phone, password)  │
+  └──────────┬─────────┘
+             │
+             ▼
+  ┌────────────────────────────────────────────┐
+  │ CustomerRegisterRequest@validate()         │
+  │ ✓ Name: required, string, max 255          │
+  │ ✓ Email: required, unique:customer_users   │
+  │ ✓ Phone: required, regex, unique           │
+  │ ✓ Password: required, confirmed,           │
+  │   Password::defaults()                     │
+  └──────────┬─────────────────────────────────┘
+             │
+             ▼
+  ┌────────────────────────────────────────────┐
+  │ CustomerRegisterController@store()         │
+  │                                            │
+  │ 1. Create CustomerUser record              │
+  │    $customer = CustomerUser::create([...]) │
+  │                                            │
+  │ 2. Create empty cart                       │
+  │    Cart::create(['customer_user_id' =>     │
+  │                  $customer->id])           │
+  │                                            │
+  │ 3. Fire registered event                   │
+  │    event(new Registered($customer))        │
+  │                                            │
+  │ 4. Auto-login customer                     │
+  │    Auth::guard('customer')                 │
+  │        ->login($customer)                  │
+  │                                            │
+  │ 5. Redirect to /shop                       │
+  │    return redirect('/shop')                │
+  └──────────┬─────────────────────────────────┘
+             │
+             ▼
+  ┌────────────────────┐
+  │ Customer is now    │
+  │ logged in & ready  │
+  │ to shop!           │
+  └────────────────────┘
+
+
+2. LOGIN FLOW (with Guest Cart Migration)
+═══════════════════════════════════════════════════════════════════════════════
+
+  ┌─────────────────────┐
+  │ Guest adds items    │
+  │ to cart (session)   │
+  │ session_id: xyz123  │
+  └──────────┬──────────┘
+             │
+             ├─→ carts table: {session_id: xyz123, customer_user_id: null}
+             │                cart_items: [product1, product2]
+             │
+             ▼
+  ┌────────────────────┐
+  │ User Visits        │
+  │ /account/login     │
+  └──────────┬─────────┘
+             │
+             ▼
+  ┌────────────────────────────────────────────┐
+  │ CustomerLoginController@create()           │
+  │ - Returns login blade form                 │
+  └──────────┬─────────────────────────────────┘
+             │
+             ▼
+  ┌────────────────────┐
+  │ User Submits       │
+  │ email & password   │
+  │ + remember         │
+  └──────────┬─────────┘
+             │
+             ▼
+  ┌────────────────────────────────────────────┐
+  │ CustomerLoginRequest@validate()            │
+  │ ✓ Email: required, email                   │
+  │ ✓ Password: required, string               │
+  │ ✓ Remember: boolean                        │
+  └──────────┬─────────────────────────────────┘
+             │
+             ▼
+  ┌────────────────────────────────────────────┐
+  │ CustomerLoginController@store()            │
+  │                                            │
+  │ 1. Authenticate credentials                │
+  │    Auth::guard('customer')                 │
+  │        ->attempt($credentials)             │
+  │                                            │
+  │ 2. Regenerate session (security)           │
+  │    $request->session()                     │
+  │              ->regenerate()                │
+  │                                            │
+  │ 3. Call migrateGuestCart()                 │
+  │    $this->migrateGuestCart()               │
+  │                                            │
+  │ 4. Redirect to /shop                       │
+  │    return redirect()->intended('/shop')    │
+  └──────────┬─────────────────────────────────┘
+             │
+             ▼
+  ┌────────────────────────────────────────────┐
+  │ migrateGuestCart() Helper                  │
+  │                                            │
+  │ 1. Get session ID                          │
+  │    $sessionId = Session::getId()           │
+  │                                            │
+  │ 2. Get current customer                    │
+  │    $customer = Auth::guard('customer')     │
+  │                       ->user()             │
+  │                                            │
+  │ 3. Find guest cart by session_id           │
+  │    $guestCart = Cart::where(               │
+  │        'session_id', $sessionId)           │
+  │        ->whereNull('customer_user_id')     │
+  │        ->first()                           │
+  │                                            │
+  │ IF guest cart exists:                      │
+  │   - Get or create customer cart            │
+  │   - Migrate all items to customer cart     │
+  │   - Delete old guest cart                  │
+  │                                            │
+  │ RESULT: Customer sees all items            │
+  │ (both guest + new items merged)            │
+  └──────────┬─────────────────────────────────┘
+             │
+             ▼
+  ┌────────────────────────────────────────────┐
+  │ Data After Login:                          │
+  │                                            │
+  │ carts: {customer_user_id: 42,              │
+  │         session_id: null}                  │
+  │ cart_items: [product1, product2]           │
+  │             (all merged into one cart)     │
+  │                                            │
+  │ Old guest cart: DELETED                    │
+  └──────────┬─────────────────────────────────┘
+             │
+             ▼
+  ┌────────────────────┐
+  │ Customer sees all  │
+  │ items in cart!     │
+  │ Seamless shopping  │
+  │ experience         │
+  └────────────────────┘
+
+
+3. PASSWORD RESET FLOW
+═══════════════════════════════════════════════════════════════════════════════
+
+  ┌────────────────────────────────────┐
+  │ User Visits /account/forgot-pwd    │
+  └──────────┬─────────────────────────┘
+             │
+             ▼
+  ┌────────────────────────────────────────────┐
+  │ PasswordResetLinkController@create()       │
+  │ - Returns password reset request form      │
+  └──────────┬─────────────────────────────────┘
+             │
+             ▼
+  ┌────────────────────┐
+  │ User Submits Email │
+  └──────────┬─────────┘
+             │
+             ▼
+  ┌────────────────────────────────────────────┐
+  │ PasswordResetLinkRequest@validate()        │
+  │ ✓ Email: required, email                   │
+  └──────────┬─────────────────────────────────┘
+             │
+             ▼
+  ┌────────────────────────────────────────────┐
+  │ PasswordResetLinkController@store()        │
+  │ - Uses customers password broker           │
+  │ - Sends reset link to email                │
+  │ - password_reset_tokens table              │
+  └──────────┬─────────────────────────────────┘
+             │
+             ▼
+  ┌────────────────────┐
+  │ User Clicks Link   │
+  │ in Email           │
+  │ /account/reset-pwd/│
+  │ {token}            │
+  └──────────┬─────────┘
+             │
+             ▼
+  ┌────────────────────────────────────────────┐
+  │ NewPasswordController@create()             │
+  │ - Returns password reset form              │
+  │ - Hidden field: token                      │
+  │ - Hidden field: email                      │
+  └──────────┬─────────────────────────────────┘
+             │
+             ▼
+  ┌────────────────────┐
+  │ User Submits:      │
+  │ Email, password,   │
+  │ token              │
+  └──────────┬─────────┘
+             │
+             ▼
+  ┌────────────────────────────────────────────┐
+  │ NewPasswordRequest@validate()              │
+  │ ✓ Token: required, string                  │
+  │ ✓ Email: required, email                   │
+  │ ✓ Password: required, confirmed,           │
+  │   Password::defaults()                     │
+  └──────────┬─────────────────────────────────┘
+             │
+             ▼
+  ┌────────────────────────────────────────────┐
+  │ NewPasswordController@store()              │
+  │ - Validates reset token                    │
+  │ - Updates password                         │
+  │ - Fires PasswordReset event                │
+  │ - Redirects to customer.login              │
+  └──────────┬─────────────────────────────────┘
+             │
+             ▼
+  ┌────────────────────┐
+  │ Password Reset!    │
+  │ Ready to login     │
+  │ with new password  │
+  └────────────────────┘
+
+
+4. EMAIL VERIFICATION FLOW
+═══════════════════════════════════════════════════════════════════════════════
+
+  ┌───────────────────────────────────┐
+  │ User Registers                    │
+  │ (Registered event fired)          │
+  └──────────┬────────────────────────┘
+             │
+             ▼
+  ┌──────────────────────────────────────────────┐
+  │ CustomerUser sends verification email       │
+  │ with signed URL:                            │
+  │ /account/verify-email/{id}/{hash}           │
+  │ (signature prevents tampering)              │
+  └──────────┬─────────────────────────────────┘
+             │
+             ▼
+  ┌────────────────────┐
+  │ User Clicks Link   │
+  │ in Email           │
+  └──────────┬─────────┘
+             │
+             ▼
+  ┌────────────────────────────────────────────┐
+  │ VerifyEmailController@__invoke()           │
+  │ - Check customer is authenticated          │
+  │ - Validate signed URL                      │
+  │ - Mark email as verified                   │
+  │ - Fire Verified event                      │
+  │ - Redirect to /shop                        │
+  └──────────┬─────────────────────────────────┘
+             │
+             ▼
+  ┌────────────────────┐
+  │ Email Verified!    │
+  │ Account activated  │
+  └────────────────────┘
+
+
+╔════════════════════════════════════════════════════════════════════════════════╗
+║                         FORM REQUEST VALIDATORS                               ║
+╚════════════════════════════════════════════════════════════════════════════════╝
+
+┌─ CustomerRegisterRequest ──────────────────────────────────────────────────────┐
+│ Validates: name, email, phone, password                                        │
+│                                                                                 │
+│ Rules:                                                                          │
+│  ├─ name: required | string | max:255                                          │
+│  ├─ email: required | email | unique:customer_users,email                      │
+│  ├─ phone: required | regex:/^(\+62|62|0)[0-9]{9,12}$/ |                       │
+│  │          unique:customer_users,phone                                        │
+│  └─ password: required | confirmed | Password::defaults()                      │
+│                                                                                 │
+│ Messages: Indonesian (Bahasa Indonesia)                                         │
+│  ├─ "Nama wajib diisi"                                                          │
+│  ├─ "Email wajib diisi", "Email tidak valid", "Email sudah terdaftar"          │
+│  ├─ "Nomor telepon wajib diisi", "Format nomor telepon tidak valid"            │
+│  └─ "Password wajib diisi", "Konfirmasi password tidak sesuai"                 │
+└─────────────────────────────────────────────────────────────────────────────────┘
+
+┌─ CustomerLoginRequest ─────────────────────────────────────────────────────────┐
+│ Validates: email, password, remember                                           │
+│                                                                                 │
+│ Rules:                                                                          │
+│  ├─ email: required | email                                                    │
+│  ├─ password: required | string                                                │
+│  └─ remember: boolean                                                          │
+│                                                                                 │
+│ Messages: Indonesian                                                            │
+│  ├─ "Email wajib diisi", "Format email tidak valid"                            │
+│  └─ "Password wajib diisi"                                                     │
+└─────────────────────────────────────────────────────────────────────────────────┘
+
+┌─ PasswordResetLinkRequest ─────────────────────────────────────────────────────┐
+│ Validates: email                                                               │
+│                                                                                 │
+│ Rules:                                                                          │
+│  └─ email: required | email                                                    │
+│                                                                                 │
+│ Messages: Indonesian                                                            │
+│  ├─ "Email wajib diisi"                                                        │
+│  └─ "Format email tidak valid"                                                 │
+└─────────────────────────────────────────────────────────────────────────────────┘
+
+┌─ NewPasswordRequest ───────────────────────────────────────────────────────────┐
+│ Validates: token, email, password                                              │
+│                                                                                 │
+│ Rules:                                                                          │
+│  ├─ token: required | string                                                   │
+│  ├─ email: required | email                                                    │
+│  └─ password: required | confirmed | Password::defaults()                      │
+│                                                                                 │
+│ Messages: Indonesian                                                            │
+│  ├─ "Email wajib diisi", "Format email tidak valid"                            │
+│  └─ "Password wajib diisi", "Konfirmasi password tidak sesuai"                 │
+└─────────────────────────────────────────────────────────────────────────────────┘
+
+
+╔════════════════════════════════════════════════════════════════════════════════╗
+║                         DATABASE INTEGRATION                                   ║
+╚════════════════════════════════════════════════════════════════════════════════╝
+
+Table: customer_users
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ Column                  │ Type      │ Constraint   │ Purpose                  │
+├──────────────────────────────────────────────────────────────────────────────┤
+│ id                      │ bigint    │ PK           │ Primary key              │
+│ name                    │ string    │              │ Customer name            │
+│ email                   │ string    │ UNIQUE       │ Customer email (login)   │
+│ phone                   │ string    │ UNIQUE       │ Phone number             │
+│ password                │ string    │              │ Hashed password          │
+│ email_verified_at       │ timestamp │ nullable     │ Email verification time  │
+│ remember_token          │ string    │ nullable     │ Remember-me login        │
+│ created_at              │ timestamp │              │ Account creation time    │
+│ updated_at              │ timestamp │              │ Last update time         │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+Table: password_reset_tokens
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ Column                  │ Type      │ Constraint   │ Purpose                  │
+├──────────────────────────────────────────────────────────────────────────────┤
+│ email                   │ string    │ PK           │ Customer email           │
+│ token                   │ string    │              │ Reset token              │
+│ created_at              │ timestamp │              │ Token creation time      │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+Guard Configuration (from config/auth.php - Step 1)
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ Guard: customer                                                              │
+│  ├─ Driver: session                                                         │
+│  └─ Provider: customers                                                     │
+│                                                                              │
+│ Provider: customers                                                         │
+│  ├─ Driver: eloquent                                                        │
+│  └─ Model: App\Models\CustomerUser                                          │
+│                                                                              │
+│ Password Broker: customers                                                  │
+│  ├─ Provider: customers                                                     │
+│  └─ Table: password_reset_tokens                                            │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+
+╔════════════════════════════════════════════════════════════════════════════════╗
+║                            STATUS SUMMARY                                      ║
+╚════════════════════════════════════════════════════════════════════════════════╝
+
+Files Created:                                 6 ✅
+Files Modified:                                4 ✅
+PHP Syntax Validation:                       10 ✅
+Compilation Errors:                           0 ✅
+Integration Ready:                            ✅
+Security Implemented:                         ✅
+Indonesian Localization:                      ✅
+Documentation:                                ✅
+
+Phase 1 Completion:                         75% (3 of 4 steps)
+Overall Project Completion:                 13% (26 of 216 hours)
+
+Next Step:  Step 4 - Routes & Middleware

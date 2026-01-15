@@ -1,0 +1,294 @@
+/**
+ * PAGES — PROFILE
+ * ===============
+ * Customer profile page with personal info and password forms
+ */
+
+@use '../abstracts/mixins' as *;
+
+// ============================================================================
+// HEADER
+// ============================================================================
+
+.profile-header {
+  @include flex-between;
+  padding: var(--ane-spacing-lg);
+  background: var(--ane-color-light);
+  border-bottom: 1px solid var(--ane-color-gray-200);
+  position: sticky;
+  top: 0;
+  z-index: var(--ane-z-fixed);
+}
+
+.back-btn {
+  @include flex-center;
+  width: 40px;
+  height: 40px;
+  color: var(--ane-color-text-primary);
+  text-decoration: none;
+  @include smooth-transition;
+
+  &:active {
+    color: var(--ane-color-primary);
+  }
+}
+
+.profile-title {
+  font-size: var(--ane-font-size-xl);
+  font-weight: var(--ane-font-weight-bold);
+  color: var(--ane-color-text-primary);
+  margin: 0;
+}
+
+// ============================================================================
+// ALERTS
+// ============================================================================
+
+.alert {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ane-spacing-md);
+  padding: var(--ane-spacing-lg);
+  margin: var(--ane-spacing-lg);
+  border-radius: var(--ane-radius-xl);
+  font-size: var(--ane-font-size-sm);
+
+  svg {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+  }
+
+  &-success {
+    background: rgba(34, 197, 94, 0.1);
+    color: #15803d;
+    border: 1px solid rgba(34, 197, 94, 0.2);
+
+    svg {
+      color: #22c55e;
+    }
+  }
+
+  &-danger {
+    background: rgba(239, 68, 68, 0.1);
+    color: #991b1b;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+
+    svg {
+      color: var(--ane-color-danger);
+    }
+  }
+}
+
+// ============================================================================
+// AVATAR SECTION
+// ============================================================================
+
+.profile-avatar-section {
+  @include flex-center;
+  flex-direction: column;
+  padding: var(--ane-spacing-2xl) var(--ane-spacing-lg);
+  background: var(--ane-color-light);
+  border-bottom: 1px solid var(--ane-color-gray-200);
+}
+
+.profile-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: var(--ane-radius-full);
+  overflow: hidden;
+  border: 4px solid var(--ane-color-primary);
+  margin-bottom: var(--ane-spacing-lg);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.profile-avatar-placeholder {
+  @include flex-center;
+  width: 100%;
+  height: 100%;
+  background: var(--ane-color-primary);
+  color: var(--ane-color-light);
+  font-size: var(--ane-font-size-3xl);
+  font-weight: var(--ane-font-weight-bold);
+}
+
+.profile-name {
+  font-size: var(--ane-font-size-2xl);
+  font-weight: var(--ane-font-weight-bold);
+  color: var(--ane-color-text-primary);
+  margin: 0 0 var(--ane-spacing-xs) 0;
+}
+
+.profile-email {
+  font-size: var(--ane-font-size-sm);
+  color: var(--ane-color-text-muted);
+  margin: 0 0 var(--ane-spacing-xs) 0;
+}
+
+.profile-joined {
+  font-size: var(--ane-font-size-xs);
+  color: var(--ane-color-gray-400);
+  margin: 0;
+}
+
+// ============================================================================
+// PROFILE SECTIONS
+// ============================================================================
+
+.profile-section {
+  background: var(--ane-color-light);
+  border-radius: var(--ane-radius-xl);
+  margin: var(--ane-spacing-lg);
+  padding: var(--ane-spacing-lg);
+  box-shadow: var(--ane-shadow-sm);
+
+  &__header {
+    padding-bottom: var(--ane-spacing-lg);
+    border-bottom: 1px solid var(--ane-color-gray-200);
+    margin-bottom: var(--ane-spacing-lg);
+  }
+
+  &__title {
+    font-size: var(--ane-font-size-lg);
+    font-weight: var(--ane-font-weight-bold);
+    color: var(--ane-color-text-primary);
+    margin: 0;
+  }
+}
+
+// ============================================================================
+// FORMS
+// ============================================================================
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ane-spacing-lg);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ane-spacing-sm);
+}
+
+.form-label {
+  font-size: var(--ane-font-size-sm);
+  font-weight: var(--ane-font-weight-semibold);
+  color: var(--ane-color-text-primary);
+}
+
+.form-input {
+  width: 100%;
+  padding: var(--ane-spacing-md) var(--ane-spacing-lg);
+  font-size: var(--ane-font-size-base);
+  color: var(--ane-color-text-primary);
+  background: var(--ane-color-light);
+  border: 2px solid var(--ane-color-gray-200);
+  border-radius: var(--ane-radius-lg);
+  @include smooth-transition;
+  min-height: 48px;
+
+  &:focus {
+    outline: none;
+    border-color: var(--ane-color-primary);
+  }
+
+  &.is-invalid {
+    border-color: var(--ane-color-danger);
+  }
+
+  &::placeholder {
+    color: var(--ane-color-gray-400);
+  }
+}
+
+.form-error {
+  font-size: var(--ane-font-size-xs);
+  color: var(--ane-color-danger);
+  margin-top: calc(var(--ane-spacing-xs) * -1);
+}
+
+.form-hint {
+  font-size: var(--ane-font-size-xs);
+  color: var(--ane-color-text-muted);
+  display: block;
+  margin-top: calc(var(--ane-spacing-sm) * -1);
+}
+
+// ============================================================================
+// AUTOCOMPLETE DROPDOWN (for location selection)
+// ============================================================================
+
+// Dropdown container styling
+#province_dropdown,
+#city_dropdown,
+#district_dropdown {
+  background: var(--ane-color-light);
+  border-radius: var(--ane-radius-md);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  max-height: 240px;
+  overflow-y: auto;
+  margin-top: var(--ane-spacing-xs);
+}
+
+.autocomplete-item {
+  padding: var(--ane-spacing-sm) var(--ane-spacing-md);
+  font-size: var(--ane-font-size-sm);
+  color: var(--ane-color-text-primary);
+  cursor: pointer;
+  border-bottom: 1px solid var(--ane-color-gray-200);
+  @include smooth-transition;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:hover {
+    background: var(--ane-color-gray-100);
+  }
+
+  &:active {
+    background: var(--ane-color-primary-light);
+    color: var(--ane-color-primary);
+  }
+
+  .font-medium {
+    font-weight: var(--ane-font-weight-semibold);
+  }
+}
+
+// "Tidak ada data" message styling
+#province_dropdown > div:not(.autocomplete-item),
+#city_dropdown > div:not(.autocomplete-item),
+#district_dropdown > div:not(.autocomplete-item) {
+  padding: var(--ane-spacing-md);
+  text-align: center;
+  color: var(--ane-color-text-muted);
+  font-size: var(--ane-font-size-sm);
+}
+
+// ============================================================================
+// RESPONSIVE
+// ============================================================================
+
+@media (max-width: 360px) {
+  .profile-avatar {
+    width: 80px;
+    height: 80px;
+  }
+
+  .profile-name {
+    font-size: var(--ane-font-size-xl);
+  }
+
+  .profile-section {
+    margin: var(--ane-spacing-md);
+    padding: var(--ane-spacing-md);
+  }
+}

@@ -1,0 +1,1239 @@
+// Payment Pages Styles
+
+// Payment Method Selection Page
+.payment-select {
+  padding: var(--ane-spacing-md);
+  margin-bottom: var(--ane-bottom-nav-height);
+}
+
+.payment-select-header {
+  display: flex;
+  align-items: center;
+  gap: var(--ane-spacing-sm);
+  margin-bottom: var(--ane-spacing-lg);
+
+  &__back {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: var(--ane-color-light);
+    border: 1px solid var(--ane-color-gray-200);
+    border-radius: var(--ane-radius-md);
+    color: var(--ane-color-text-primary);
+    text-decoration: none;
+    transition: all var(--ane-transition-fast);
+
+    &:active {
+      background: var(--ane-color-gray-100);
+      transform: scale(0.95);
+    }
+  }
+
+  &__title {
+    font-size: var(--ane-font-size-xl);
+    font-weight: var(--ane-font-weight-bold);
+    color: var(--ane-color-text-primary);
+    margin: 0;
+  }
+}
+
+.payment-summary-card {
+  padding: var(--ane-spacing-lg);
+  background: var(--ane-color-primary-light);
+  border: 1px solid var(--ane-color-primary);
+  border-radius: var(--ane-radius-md);
+  margin-bottom: var(--ane-spacing-lg);
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--ane-spacing-sm);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &--total {
+      padding-top: var(--ane-spacing-sm);
+      border-top: 2px solid var(--ane-color-primary);
+      margin-top: var(--ane-spacing-sm);
+    }
+  }
+
+  &__label {
+    font-size: var(--ane-font-size-sm);
+    color: var(--ane-color-text-secondary);
+    font-weight: var(--ane-font-weight-medium);
+  }
+
+  &__value {
+    font-size: var(--ane-font-size-sm);
+    font-weight: var(--ane-font-weight-semibold);
+    color: var(--ane-color-text-primary);
+    text-align: right;
+
+    &--highlight {
+      color: var(--ane-color-primary);
+      font-weight: var(--ane-font-weight-bold);
+    }
+
+    &--amount {
+      font-size: var(--ane-font-size-2xl);
+      font-weight: var(--ane-font-weight-bold);
+      color: var(--ane-color-primary);
+    }
+  }
+}
+
+.payment-methods {
+  &__title {
+    font-size: var(--ane-font-size-lg);
+    font-weight: var(--ane-font-weight-bold);
+    color: var(--ane-color-text-primary);
+    margin: 0 0 var(--ane-spacing-md) 0;
+  }
+
+  &__empty {
+    text-align: center;
+    padding: var(--ane-spacing-3xl) var(--ane-spacing-md);
+    background: var(--ane-color-light);
+    border: 1px solid var(--ane-color-gray-200);
+    border-radius: var(--ane-radius-md);
+    color: var(--ane-color-text-secondary);
+
+    svg {
+      margin-bottom: var(--ane-spacing-md);
+      color: var(--ane-color-gray-400);
+    }
+
+    p {
+      margin: 0 0 var(--ane-spacing-xs) 0;
+      font-size: var(--ane-font-size-base);
+      font-weight: var(--ane-font-weight-semibold);
+      color: var(--ane-color-text-primary);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__empty-hint {
+    font-size: var(--ane-font-size-sm) !important;
+    color: var(--ane-color-text-secondary) !important;
+    font-weight: var(--ane-font-weight-normal) !important;
+  }
+}
+
+.payment-method-card {
+  display: flex;
+  align-items: center;
+  gap: var(--ane-spacing-md);
+  padding: var(--ane-spacing-md);
+  background: var(--ane-color-light);
+  border: 1px solid var(--ane-color-gray-200);
+  border-radius: var(--ane-radius-md);
+  text-decoration: none;
+  margin-bottom: var(--ane-spacing-sm);
+  transition: all var(--ane-transition-fast);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &:active {
+    background: var(--ane-color-gray-100);
+    transform: scale(0.98);
+  }
+
+  &--disabled {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    background: var(--ane-color-primary-light);
+    border-radius: var(--ane-radius-md);
+    color: var(--ane-color-primary);
+    flex-shrink: 0;
+  }
+
+  &__content {
+    flex: 1;
+  }
+
+  &__name {
+    font-size: var(--ane-font-size-base);
+    font-weight: var(--ane-font-weight-semibold);
+    color: var(--ane-color-text-primary);
+    margin: 0 0 4px 0;
+  }
+
+  &__description {
+    font-size: var(--ane-font-size-sm);
+    color: var(--ane-color-text-secondary);
+    margin: 0;
+  }
+
+  &__arrow {
+    display: flex;
+    align-items: center;
+    color: var(--ane-color-text-muted);
+  }
+}
+
+// Bank Transfer Page
+.bank-transfer {
+  padding: var(--ane-spacing-md);
+  margin-bottom: var(--ane-bottom-nav-height);
+}
+
+.bank-transfer-header {
+  display: flex;
+  align-items: center;
+  gap: var(--ane-spacing-sm);
+  margin-bottom: var(--ane-spacing-lg);
+
+  &__back {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: var(--ane-color-light);
+    border: 1px solid var(--ane-color-gray-200);
+    border-radius: var(--ane-radius-md);
+    color: var(--ane-color-text-primary);
+    text-decoration: none;
+    transition: all var(--ane-transition-fast);
+
+    &:active {
+      background: var(--ane-color-gray-100);
+      transform: scale(0.95);
+    }
+  }
+
+  &__title {
+    font-size: var(--ane-font-size-xl);
+    font-weight: var(--ane-font-weight-bold);
+    color: var(--ane-color-text-primary);
+    margin: 0;
+  }
+}
+
+.payment-amount-card {
+  padding: var(--ane-spacing-2xl) var(--ane-spacing-lg);
+  background: linear-gradient(135deg, var(--ane-color-primary) 0%, var(--ane-color-primary-hover) 100%);
+  border-radius: var(--ane-radius-lg);
+  text-align: center;
+  margin-bottom: var(--ane-spacing-lg);
+  box-shadow: var(--ane-shadow-md);
+
+  &__label {
+    font-size: var(--ane-font-size-sm);
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: var(--ane-font-weight-medium);
+    margin-bottom: var(--ane-spacing-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  &__amount {
+    font-size: var(--ane-font-size-3xl);
+    font-weight: var(--ane-font-weight-extrabold);
+    color: var(--ane-color-light);
+    margin-bottom: var(--ane-spacing-sm);
+  }
+
+  &__note {
+    font-size: var(--ane-font-size-sm);
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+  }
+}
+
+.bank-transfer-instructions {
+  padding: var(--ane-spacing-lg);
+  background: var(--ane-color-light);
+  border: 1px solid var(--ane-color-gray-200);
+  border-radius: var(--ane-radius-md);
+  margin-bottom: var(--ane-spacing-lg);
+
+  &__title {
+    font-size: var(--ane-font-size-base);
+    font-weight: var(--ane-font-weight-bold);
+    color: var(--ane-color-text-primary);
+    margin: 0 0 var(--ane-spacing-md) 0;
+  }
+
+  &__list {
+    margin: 0;
+    padding-left: var(--ane-spacing-lg);
+
+    li {
+      font-size: var(--ane-font-size-sm);
+      color: var(--ane-color-text-secondary);
+      margin-bottom: var(--ane-spacing-sm);
+      line-height: var(--ane-line-height-relaxed);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.bank-accounts {
+  &__title {
+    font-size: var(--ane-font-size-lg);
+    font-weight: var(--ane-font-weight-bold);
+    color: var(--ane-color-text-primary);
+    margin: 0 0 var(--ane-spacing-md) 0;
+  }
+
+  &__empty {
+    text-align: center;
+    padding: var(--ane-spacing-3xl) var(--ane-spacing-md);
+    background: var(--ane-color-light);
+    border: 1px solid var(--ane-color-gray-200);
+    border-radius: var(--ane-radius-md);
+    color: var(--ane-color-text-secondary);
+
+    svg {
+      margin-bottom: var(--ane-spacing-md);
+      color: var(--ane-color-gray-400);
+    }
+
+    p {
+      margin: 0 0 var(--ane-spacing-xs) 0;
+      font-size: var(--ane-font-size-base);
+      font-weight: var(--ane-font-weight-semibold);
+      color: var(--ane-color-text-primary);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__empty-hint {
+    font-size: var(--ane-font-size-sm) !important;
+    color: var(--ane-color-text-secondary) !important;
+    font-weight: var(--ane-font-weight-normal) !important;
+  }
+}
+
+.bank-account-card {
+  padding: var(--ane-spacing-lg);
+  background: var(--ane-color-light);
+  border: 1px solid var(--ane-color-gray-200);
+  border-radius: var(--ane-radius-md);
+  margin-bottom: var(--ane-spacing-md);
+
+  &:last-child {
+    margin-bottom: var(--ane-spacing-lg);
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: var(--ane-spacing-sm);
+    padding-bottom: var(--ane-spacing-md);
+    border-bottom: 1px solid var(--ane-color-gray-200);
+    margin-bottom: var(--ane-spacing-md);
+  }
+
+  &__bank-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: var(--ane-color-secondary-lighter);
+    border-radius: var(--ane-radius-md);
+    color: var(--ane-color-secondary);
+  }
+
+  &__bank-name {
+    font-size: var(--ane-font-size-lg);
+    font-weight: var(--ane-font-weight-bold);
+    color: var(--ane-color-text-primary);
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ane-spacing-md);
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ane-spacing-xs);
+  }
+
+  &__label {
+    font-size: var(--ane-font-size-xs);
+    color: var(--ane-color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: var(--ane-font-weight-medium);
+  }
+
+  &__value {
+    font-size: var(--ane-font-size-base);
+    font-weight: var(--ane-font-weight-semibold);
+    color: var(--ane-color-text-primary);
+
+    &--number {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--ane-spacing-sm) var(--ane-spacing-md);
+      background: var(--ane-color-gray-100);
+      border-radius: var(--ane-radius-sm);
+      font-size: var(--ane-font-size-xl);
+      font-family: var(--ane-font-family-mono);
+      letter-spacing: 1px;
+    }
+  }
+}
+
+.copy-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: var(--ane-color-primary);
+  border: none;
+  border-radius: var(--ane-radius-sm);
+  color: var(--ane-color-light);
+  cursor: pointer;
+  transition: all var(--ane-transition-fast);
+  padding: 0;
+  flex-shrink: 0;
+
+  &:active {
+    background: var(--ane-color-primary-hover);
+    transform: scale(0.95);
+  }
+
+  &--copied {
+    background: var(--ane-color-success);
+  }
+
+  &__icon {
+    &--check {
+      display: none;
+    }
+  }
+
+  &--copied &__icon {
+    &--copy {
+      display: none;
+    }
+
+    &--check {
+      display: block;
+    }
+  }
+}
+
+.bank-transfer-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ane-spacing-sm);
+  padding-top: var(--ane-spacing-md);
+
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+// ============================================================================
+// IPAYMU PAYMENT PAGE
+// ============================================================================
+
+.ipaymu-payment {
+  padding: var(--ane-spacing-md);
+  margin-bottom: var(--ane-bottom-nav-height);
+}
+
+.ipaymu-payment-header {
+  display: flex;
+  align-items: center;
+  gap: var(--ane-spacing-sm);
+  margin-bottom: var(--ane-spacing-lg);
+
+  &__back {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: var(--ane-color-light);
+    border: 1px solid var(--ane-color-gray-200);
+    border-radius: var(--ane-radius-md);
+    color: var(--ane-color-text-primary);
+    text-decoration: none;
+    transition: all var(--ane-transition-fast);
+
+    &:active {
+      background: var(--ane-color-gray-100);
+      transform: scale(0.95);
+    }
+  }
+
+  &__title {
+    font-size: var(--ane-font-size-xl);
+    font-weight: var(--ane-font-weight-bold);
+    color: var(--ane-color-text-primary);
+    margin: 0;
+  }
+}
+
+.ipaymu-info-card {
+  padding: var(--ane-spacing-lg);
+  background: var(--ane-color-light);
+  border: 1px solid var(--ane-color-gray-200);
+  border-radius: var(--ane-radius-md);
+  margin-bottom: var(--ane-spacing-lg);
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: var(--ane-spacing-sm);
+    padding-bottom: var(--ane-spacing-md);
+    border-bottom: 1px solid var(--ane-color-gray-200);
+    margin-bottom: var(--ane-spacing-md);
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: var(--ane-color-primary-light);
+    border-radius: var(--ane-radius-md);
+    color: var(--ane-color-primary);
+  }
+
+  &__title {
+    font-size: var(--ane-font-size-lg);
+    font-weight: var(--ane-font-weight-bold);
+    color: var(--ane-color-text-primary);
+    margin: 0;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ane-spacing-md);
+  }
+
+  &__text {
+    font-size: var(--ane-font-size-base);
+    color: var(--ane-color-text-secondary);
+    margin: 0;
+  }
+
+  &__list {
+    margin: 0;
+    padding-left: var(--ane-spacing-lg);
+
+    li {
+      font-size: var(--ane-font-size-sm);
+      color: var(--ane-color-text-secondary);
+      margin-bottom: var(--ane-spacing-xs);
+      line-height: var(--ane-line-height-relaxed);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__note {
+    display: flex;
+    align-items: center;
+    gap: var(--ane-spacing-xs);
+    padding: var(--ane-spacing-sm) var(--ane-spacing-md);
+    background: var(--ane-color-gray-100);
+    border-radius: var(--ane-radius-sm);
+    font-size: var(--ane-font-size-sm);
+    color: var(--ane-color-text-secondary);
+
+    svg {
+      flex-shrink: 0;
+      color: var(--ane-color-primary);
+    }
+  }
+}
+
+.ipaymu-methods-card {
+  padding: var(--ane-spacing-lg);
+  background: var(--ane-color-light);
+  border: 1px solid var(--ane-color-gray-200);
+  border-radius: var(--ane-radius-md);
+  margin-bottom: var(--ane-spacing-lg);
+
+  &__title {
+    font-size: var(--ane-font-size-base);
+    font-weight: var(--ane-font-weight-bold);
+    color: var(--ane-color-text-primary);
+    margin: 0 0 var(--ane-spacing-md) 0;
+  }
+}
+
+.ipaymu-methods-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--ane-spacing-sm);
+}
+
+.ipaymu-method-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ane-spacing-xs);
+  padding: var(--ane-spacing-md);
+  background: var(--ane-color-gray-100);
+  border-radius: var(--ane-radius-sm);
+  text-align: center;
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: var(--ane-color-light);
+    border-radius: var(--ane-radius-md);
+    color: var(--ane-color-primary);
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: var(--ane-color-light);
+    border-radius: var(--ane-radius-md);
+    padding: var(--ane-spacing-xs);
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  span {
+    font-size: var(--ane-font-size-xs);
+    font-weight: var(--ane-font-weight-medium);
+    color: var(--ane-color-text-secondary);
+  }
+
+  &__fee {
+    font-size: 10px;
+    color: var(--ane-color-text-muted);
+    font-weight: var(--ane-font-weight-normal);
+  }
+}
+
+.ipaymu-channel-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ane-spacing-sm);
+}
+
+.ipaymu-channel-option {
+  position: relative;
+  cursor: pointer;
+
+  input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+
+    &:checked + .ipaymu-channel-option__content {
+      border-color: var(--ane-color-primary);
+      background: var(--ane-color-primary-lighter);
+
+      .ipaymu-channel-option__radio::after {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    &:focus + .ipaymu-channel-option__content {
+      outline: 2px solid var(--ane-color-primary);
+      outline-offset: 2px;
+    }
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--ane-spacing-md);
+    background: var(--ane-color-light);
+    border: 2px solid var(--ane-color-gray-200);
+    border-radius: var(--ane-radius-md);
+    transition: all var(--ane-transition-fast);
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: var(--ane-spacing-sm);
+    flex: 1;
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: var(--ane-color-gray-100);
+    border-radius: var(--ane-radius-sm);
+    padding: var(--ane-spacing-xs);
+    flex-shrink: 0;
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: var(--ane-color-gray-100);
+    border-radius: var(--ane-radius-sm);
+    color: var(--ane-color-primary);
+    flex-shrink: 0;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  &__name {
+    font-size: var(--ane-font-size-base);
+    font-weight: var(--ane-font-weight-semibold);
+    color: var(--ane-color-text-primary);
+  }
+
+  &__fee {
+    font-size: var(--ane-font-size-xs);
+    color: var(--ane-color-text-muted);
+  }
+
+  &__radio {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--ane-color-gray-300);
+    border-radius: 50%;
+    flex-shrink: 0;
+    transition: all var(--ane-transition-fast);
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      width: 12px;
+      height: 12px;
+      background: var(--ane-color-primary);
+      border-radius: 50%;
+      opacity: 0;
+      transition: all var(--ane-transition-fast);
+    }
+  }
+}
+
+.ipaymu-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ane-spacing-sm);
+  padding-top: var(--ane-spacing-md);
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: var(--ane-max-width-mobile);
+  background: var(--ane-color-light);
+  border-top: 1px solid var(--ane-color-gray-200);
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
+  z-index: calc(var(--ane-z-fixed) + 1);
+    padding: var(--ane-spacing-lg) var(--ane-spacing-md) var(--ane-spacing-md);
+
+  form {
+    width: 100%;
+  }
+
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+// ============================================================================
+// IPAYMU RESULT PAGE
+// ============================================================================
+
+.ipaymu-result {
+  padding: var(--ane-spacing-md);
+  margin-bottom: var(--ane-bottom-nav-height);
+}
+
+.ipaymu-result-header {
+  display: flex;
+  align-items: center;
+  gap: var(--ane-spacing-sm);
+  margin-bottom: var(--ane-spacing-lg);
+
+  &__back {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: var(--ane-color-light);
+    border: 1px solid var(--ane-color-gray-200);
+    border-radius: var(--ane-radius-md);
+    color: var(--ane-color-text-primary);
+    text-decoration: none;
+    transition: all var(--ane-transition-fast);
+
+    &:active {
+      background: var(--ane-color-gray-100);
+      transform: scale(0.95);
+    }
+  }
+
+  &__title {
+    font-size: var(--ane-font-size-xl);
+    font-weight: var(--ane-font-weight-bold);
+    color: var(--ane-color-text-primary);
+    margin: 0;
+  }
+}
+
+.ipaymu-success-icon {
+  text-align: center;
+  padding: var(--ane-spacing-2xl) 0;
+  margin-bottom: var(--ane-spacing-lg);
+
+  svg {
+    color: var(--ane-color-success);
+    margin-bottom: var(--ane-spacing-md);
+  }
+
+  h2 {
+    font-size: var(--ane-font-size-xl);
+    font-weight: var(--ane-font-weight-bold);
+    color: var(--ane-color-text-primary);
+    margin: 0 0 var(--ane-spacing-xs) 0;
+  }
+
+  p {
+    font-size: var(--ane-font-size-sm);
+    color: var(--ane-color-text-secondary);
+    margin: 0;
+  }
+}
+
+.ipaymu-order-info {
+  padding: var(--ane-spacing-lg);
+  background: var(--ane-color-light);
+  border: 1px solid var(--ane-color-gray-200);
+  border-radius: var(--ane-radius-md);
+  margin-bottom: var(--ane-spacing-lg);
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--ane-spacing-sm) 0;
+    border-bottom: 1px solid var(--ane-color-gray-200);
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &--amount {
+      padding-top: var(--ane-spacing-md);
+      margin-top: var(--ane-spacing-xs);
+      border-top: 2px solid var(--ane-color-primary);
+
+      .ipaymu-order-info__label {
+        font-weight: var(--ane-font-weight-bold);
+        color: var(--ane-color-text-primary);
+      }
+
+      .ipaymu-order-info__value {
+        font-size: var(--ane-font-size-xl);
+        font-weight: var(--ane-font-weight-bold);
+        color: var(--ane-color-primary);
+      }
+    }
+  }
+
+  &__label {
+    font-size: var(--ane-font-size-sm);
+    color: var(--ane-color-text-secondary);
+  }
+
+  &__value {
+    font-size: var(--ane-font-size-sm);
+    font-weight: var(--ane-font-weight-semibold);
+    color: var(--ane-color-text-primary);
+    text-align: right;
+  }
+}
+
+.ipaymu-va-card {
+  padding: var(--ane-spacing-lg);
+  background: var(--ane-color-light);
+  border: 1px solid var(--ane-color-gray-200);
+  border-radius: var(--ane-radius-md);
+  margin-bottom: var(--ane-spacing-lg);
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: var(--ane-spacing-sm);
+    padding-bottom: var(--ane-spacing-md);
+    border-bottom: 1px solid var(--ane-color-gray-200);
+    margin-bottom: var(--ane-spacing-md);
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: var(--ane-color-secondary-lighter);
+    border-radius: var(--ane-radius-md);
+    color: var(--ane-color-secondary);
+  }
+
+  &__title {
+    font-size: var(--ane-font-size-lg);
+    font-weight: var(--ane-font-weight-bold);
+    color: var(--ane-color-text-primary);
+    margin: 0;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ane-spacing-md);
+  }
+
+  &__label {
+    font-size: var(--ane-font-size-xs);
+    color: var(--ane-color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: var(--ane-font-weight-medium);
+  }
+
+  &__number {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--ane-spacing-md);
+    background: var(--ane-color-gray-100);
+    border-radius: var(--ane-radius-sm);
+    font-size: var(--ane-font-size-2xl);
+    font-family: var(--ane-font-family-mono);
+    font-weight: var(--ane-font-weight-bold);
+    color: var(--ane-color-text-primary);
+    letter-spacing: 1px;
+  }
+
+  &__instruction {
+    font-size: var(--ane-font-size-sm);
+    color: var(--ane-color-text-secondary);
+    margin: 0;
+    line-height: var(--ane-line-height-relaxed);
+  }
+}
+
+.ipaymu-qr-card {
+  padding: var(--ane-spacing-lg);
+  background: var(--ane-color-light);
+  border: 1px solid var(--ane-color-gray-200);
+  border-radius: var(--ane-radius-md);
+  margin-bottom: var(--ane-spacing-lg);
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: var(--ane-spacing-sm);
+    padding-bottom: var(--ane-spacing-md);
+    border-bottom: 1px solid var(--ane-color-gray-200);
+    margin-bottom: var(--ane-spacing-md);
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: var(--ane-color-secondary-lighter);
+    border-radius: var(--ane-radius-md);
+    color: var(--ane-color-secondary);
+  }
+
+  &__title {
+    font-size: var(--ane-font-size-lg);
+    font-weight: var(--ane-font-weight-bold);
+    color: var(--ane-color-text-primary);
+    margin: 0;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ane-spacing-md);
+  }
+
+  &__image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--ane-spacing-lg);
+    background: var(--ane-color-gray-50);
+    border-radius: var(--ane-radius-md);
+    min-height: 300px;
+
+    img {
+      max-width: 280px;
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+    }
+
+    canvas {
+      max-width: 280px;
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    // QRCode.js generates img inside the container
+    > img {
+      margin: 0 auto;
+    }
+  }
+
+  &__instruction {
+    font-size: var(--ane-font-size-sm);
+    color: var(--ane-color-text-secondary);
+    margin: 0;
+    text-align: center;
+    line-height: var(--ane-line-height-relaxed);
+  }
+}
+
+.ipaymu-link-card {
+  padding: var(--ane-spacing-lg);
+  background: var(--ane-color-light);
+  border: 1px solid var(--ane-color-gray-200);
+  border-radius: var(--ane-radius-md);
+  margin-bottom: var(--ane-spacing-lg);
+
+  &__title {
+    font-size: var(--ane-font-size-base);
+    font-weight: var(--ane-font-weight-bold);
+    color: var(--ane-color-text-primary);
+    margin: 0 0 var(--ane-spacing-md) 0;
+    text-align: center;
+  }
+
+  &__note {
+    font-size: var(--ane-font-size-sm);
+    color: var(--ane-color-text-secondary);
+    margin: var(--ane-spacing-md) 0 0 0;
+    text-align: center;
+    line-height: var(--ane-line-height-relaxed);
+  }
+}
+
+.ipaymu-instructions {
+  padding: var(--ane-spacing-lg);
+  background: var(--ane-color-light);
+  border: 1px solid var(--ane-color-gray-200);
+  border-radius: var(--ane-radius-md);
+  margin-bottom: var(--ane-spacing-lg);
+
+  &__title {
+    font-size: var(--ane-font-size-base);
+    font-weight: var(--ane-font-weight-bold);
+    color: var(--ane-color-text-primary);
+    margin: 0 0 var(--ane-spacing-md) 0;
+  }
+
+  &__list {
+    margin: 0;
+    padding-left: var(--ane-spacing-lg);
+
+    li {
+      font-size: var(--ane-font-size-sm);
+      color: var(--ane-color-text-secondary);
+      margin-bottom: var(--ane-spacing-sm);
+      line-height: var(--ane-line-height-relaxed);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.ipaymu-result-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ane-spacing-sm);
+  padding-top: var(--ane-spacing-md);
+
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+// ============================================================================
+// BANK TRANSFER CONFIRMATION PAGE
+// ============================================================================
+
+.bank-transfer-confirmation-header {
+  padding: var(--ane-spacing-lg);
+  background: var(--ane-color-light);
+  border: 1px solid var(--ane-color-gray-200);
+  border-radius: var(--ane-radius-md);
+  margin-bottom: var(--ane-spacing-lg);
+  text-align: center;
+
+  &__title {
+    font-size: var(--ane-font-size-lg);
+    font-weight: var(--ane-font-weight-bold);
+    color: var(--ane-color-text-primary);
+    margin: 0 0 var(--ane-spacing-xs) 0;
+  }
+
+  &__subtitle {
+    font-size: var(--ane-font-size-sm);
+    color: var(--ane-color-text-secondary);
+    margin: 0;
+    line-height: var(--ane-line-height-relaxed);
+  }
+}
+
+.bank-transfer-form {
+  padding: var(--ane-spacing-lg);
+  background: var(--ane-color-light);
+  border: 1px solid var(--ane-color-gray-200);
+  border-radius: var(--ane-radius-md);
+  margin-bottom: var(--ane-spacing-lg);
+}
+
+.payment-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ane-spacing-xl);
+
+  textarea.form-input {
+    min-height: 100px;
+    resize: vertical;
+    font-family: inherit;
+    line-height: var(--ane-line-height-relaxed);
+  }
+
+  select.form-input {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23666' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right var(--ane-spacing-md) center;
+    background-size: 16px;
+    padding-right: calc(var(--ane-spacing-lg) + 24px);
+  }
+}
+
+.file-upload {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ane-spacing-sm);
+
+  &__label {
+    font-size: var(--ane-font-size-sm);
+    color: var(--ane-color-text-secondary);
+    margin-top: var(--ane-spacing-xs);
+    padding-left: var(--ane-spacing-sm);
+  }
+}
+
+.bank-transfer-actions-confirmation {
+  margin-bottom: var(--ane-spacing-lg);
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: var(--ane-max-width-mobile);
+  background: var(--ane-color-light);
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
+  z-index: calc(var(--ane-z-fixed) + 1);
+  padding: var(--ane-spacing-lg) var(--ane-spacing-md) var(--ane-spacing-md);
+
+  .btn {
+    width: 100%;
+    margin-bottom: var(--ane-spacing-sm);
+  }
+
+  &__text {
+    font-size: var(--ane-font-size-sm);
+    color: var(--ane-color-text-secondary);
+    margin: 0;
+  }
+}

@@ -1,0 +1,2021 @@
+{
+    "provinces": [
+        {
+            "id": 11,
+            "name": "Aceh"
+        },
+        {
+            "id": 12,
+            "name": "Sumatera Utara"
+        },
+        {
+            "id": 13,
+            "name": "Sumatera Barat"
+        },
+        {
+            "id": 14,
+            "name": "Riau"
+        },
+        {
+            "id": 15,
+            "name": "Jambi"
+        },
+        {
+            "id": 16,
+            "name": "Sumatera Selatan"
+        },
+        {
+            "id": 17,
+            "name": "Bengkulu"
+        },
+        {
+            "id": 18,
+            "name": "Lampung"
+        },
+        {
+            "id": 31,
+            "name": "DKI Jakarta"
+        },
+        {
+            "id": 32,
+            "name": "Jawa Barat"
+        },
+        {
+            "id": 33,
+            "name": "Jawa Tengah"
+        },
+        {
+            "id": 34,
+            "name": "DI Yogyakarta"
+        },
+        {
+            "id": 35,
+            "name": "Jawa Timur"
+        },
+        {
+            "id": 36,
+            "name": "Banten"
+        },
+        {
+            "id": 51,
+            "name": "Bali"
+        },
+        {
+            "id": 52,
+            "name": "Nusa Tenggara Barat"
+        },
+        {
+            "id": 53,
+            "name": "Nusa Tenggara Timur"
+        },
+        {
+            "id": 61,
+            "name": "Kalimantan Barat"
+        },
+        {
+            "id": 62,
+            "name": "Kalimantan Tengah"
+        },
+        {
+            "id": 63,
+            "name": "Kalimantan Selatan"
+        },
+        {
+            "id": 64,
+            "name": "Kalimantan Timur"
+        },
+        {
+            "id": 65,
+            "name": "Sulawesi Utara"
+        },
+        {
+            "id": 71,
+            "name": "Sulawesi Tengah"
+        },
+        {
+            "id": 72,
+            "name": "Sulawesi Selatan"
+        },
+        {
+            "id": 73,
+            "name": "Sulawesi Tenggara"
+        },
+        {
+            "id": 81,
+            "name": "Maluku"
+        },
+        {
+            "id": 82,
+            "name": "Maluku Utara"
+        },
+        {
+            "id": 91,
+            "name": "Papua"
+        }
+    ],
+    "cities": [
+        {
+            "id": 1000,
+            "province_id": 11,
+            "name": "Kabupaten Aceh Selatan",
+            "zip_code": "67611"
+        },
+        {
+            "id": 1001,
+            "province_id": 11,
+            "name": "Kabupaten Aceh Tenggara",
+            "zip_code": "67311"
+        },
+        {
+            "id": 1002,
+            "province_id": 11,
+            "name": "Kabupaten Aceh Timur",
+            "zip_code": "67151"
+        },
+        {
+            "id": 1003,
+            "province_id": 11,
+            "name": "Kabupaten Aceh Jaya",
+            "zip_code": "23611"
+        },
+        {
+            "id": 1004,
+            "province_id": 11,
+            "name": "Kabupaten Pidie",
+            "zip_code": "24111"
+        },
+        {
+            "id": 1005,
+            "province_id": 11,
+            "name": "Kabupaten Aceh Utara",
+            "zip_code": "24111"
+        },
+        {
+            "id": 1006,
+            "province_id": 11,
+            "name": "Kota Banda Aceh",
+            "zip_code": "23111"
+        },
+        {
+            "id": 1007,
+            "province_id": 11,
+            "name": "Kota Sabang",
+            "zip_code": "25411"
+        },
+        {
+            "id": 1008,
+            "province_id": 12,
+            "name": "Kabupaten Nias",
+            "zip_code": "25811"
+        },
+        {
+            "id": 1009,
+            "province_id": 12,
+            "name": "Kabupaten Langkat",
+            "zip_code": "20811"
+        },
+        {
+            "id": 1010,
+            "province_id": 12,
+            "name": "Kabupaten Asahan",
+            "zip_code": "21211"
+        },
+        {
+            "id": 1011,
+            "province_id": 12,
+            "name": "Kabupaten Tapanuli Selatan",
+            "zip_code": "22711"
+        },
+        {
+            "id": 1012,
+            "province_id": 12,
+            "name": "Kota Medan",
+            "zip_code": "20111"
+        },
+        {
+            "id": 1013,
+            "province_id": 12,
+            "name": "Kota Pematangsiantar",
+            "zip_code": "21111"
+        },
+        {
+            "id": 1014,
+            "province_id": 12,
+            "name": "Kota Sibolga",
+            "zip_code": "22511"
+        },
+        {
+            "id": 1015,
+            "province_id": 12,
+            "name": "Kota Binjai",
+            "zip_code": "20711"
+        },
+        {
+            "id": 1016,
+            "province_id": 13,
+            "name": "Kabupaten Pesisir Selatan",
+            "zip_code": "25611"
+        },
+        {
+            "id": 1017,
+            "province_id": 13,
+            "name": "Kabupaten Solok",
+            "zip_code": "27711"
+        },
+        {
+            "id": 1018,
+            "province_id": 13,
+            "name": "Kabupaten Sawahlunto\/Sijunjung",
+            "zip_code": "27811"
+        },
+        {
+            "id": 1019,
+            "province_id": 13,
+            "name": "Kabupaten Tanah Datar",
+            "zip_code": "27311"
+        },
+        {
+            "id": 1020,
+            "province_id": 13,
+            "name": "Kabupaten Padang Pariaman",
+            "zip_code": "25611"
+        },
+        {
+            "id": 1021,
+            "province_id": 13,
+            "name": "Kabupaten Agam",
+            "zip_code": "26211"
+        },
+        {
+            "id": 1022,
+            "province_id": 13,
+            "name": "Kabupaten Lima Puluh Kota",
+            "zip_code": "26411"
+        },
+        {
+            "id": 1023,
+            "province_id": 13,
+            "name": "Kota Padang",
+            "zip_code": "25111"
+        },
+        {
+            "id": 1024,
+            "province_id": 14,
+            "name": "Kabupaten Kuantan Singingi",
+            "zip_code": "29611"
+        },
+        {
+            "id": 1025,
+            "province_id": 14,
+            "name": "Kabupaten Indragiri Hulu",
+            "zip_code": "29511"
+        },
+        {
+            "id": 1026,
+            "province_id": 14,
+            "name": "Kabupaten Indragiri Hilir",
+            "zip_code": "29211"
+        },
+        {
+            "id": 1027,
+            "province_id": 14,
+            "name": "Kabupaten Pelalawan",
+            "zip_code": "28311"
+        },
+        {
+            "id": 1028,
+            "province_id": 14,
+            "name": "Kabupaten Siak",
+            "zip_code": "28611"
+        },
+        {
+            "id": 1029,
+            "province_id": 14,
+            "name": "Kabupaten Kampar",
+            "zip_code": "28711"
+        },
+        {
+            "id": 1030,
+            "province_id": 14,
+            "name": "Kabupaten Rokan Hulu",
+            "zip_code": "28811"
+        },
+        {
+            "id": 1031,
+            "province_id": 14,
+            "name": "Kota Pekanbaru",
+            "zip_code": "28111"
+        },
+        {
+            "id": 1032,
+            "province_id": 15,
+            "name": "Kabupaten Kerinci",
+            "zip_code": "37411"
+        },
+        {
+            "id": 1033,
+            "province_id": 15,
+            "name": "Kabupaten Merangin",
+            "zip_code": "37211"
+        },
+        {
+            "id": 1034,
+            "province_id": 15,
+            "name": "Kabupaten Sarolangun",
+            "zip_code": "37311"
+        },
+        {
+            "id": 1035,
+            "province_id": 15,
+            "name": "Kabupaten Batanghari",
+            "zip_code": "37111"
+        },
+        {
+            "id": 1036,
+            "province_id": 15,
+            "name": "Kabupaten Bungo",
+            "zip_code": "37511"
+        },
+        {
+            "id": 1037,
+            "province_id": 15,
+            "name": "Kabupaten Tanjung Jabung Timur",
+            "zip_code": "36111"
+        },
+        {
+            "id": 1038,
+            "province_id": 15,
+            "name": "Kabupaten Tanjung Jabung Barat",
+            "zip_code": "36211"
+        },
+        {
+            "id": 1039,
+            "province_id": 15,
+            "name": "Kota Jambi",
+            "zip_code": "36111"
+        },
+        {
+            "id": 1040,
+            "province_id": 16,
+            "name": "Kabupaten Ogan Komering Ulu",
+            "zip_code": "32111"
+        },
+        {
+            "id": 1041,
+            "province_id": 16,
+            "name": "Kabupaten Ogan Komering Ilir",
+            "zip_code": "30711"
+        },
+        {
+            "id": 1042,
+            "province_id": 16,
+            "name": "Kabupaten Muara Enim",
+            "zip_code": "31111"
+        },
+        {
+            "id": 1043,
+            "province_id": 16,
+            "name": "Kabupaten Lahat",
+            "zip_code": "31411"
+        },
+        {
+            "id": 1044,
+            "province_id": 16,
+            "name": "Kabupaten Musi Rawas",
+            "zip_code": "31511"
+        },
+        {
+            "id": 1045,
+            "province_id": 16,
+            "name": "Kabupaten Banyuasin",
+            "zip_code": "30711"
+        },
+        {
+            "id": 1046,
+            "province_id": 16,
+            "name": "Kabupaten Ogan Ilir",
+            "zip_code": "30711"
+        },
+        {
+            "id": 1047,
+            "province_id": 16,
+            "name": "Kota Palembang",
+            "zip_code": "30111"
+        },
+        {
+            "id": 1048,
+            "province_id": 17,
+            "name": "Kabupaten Seluma",
+            "zip_code": "38811"
+        },
+        {
+            "id": 1049,
+            "province_id": 17,
+            "name": "Kabupaten Rejang Lebong",
+            "zip_code": "39211"
+        },
+        {
+            "id": 1050,
+            "province_id": 17,
+            "name": "Kabupaten Bengkulu Utara",
+            "zip_code": "38711"
+        },
+        {
+            "id": 1051,
+            "province_id": 17,
+            "name": "Kabupaten Kaur",
+            "zip_code": "38911"
+        },
+        {
+            "id": 1052,
+            "province_id": 17,
+            "name": "Kabupaten Lebong",
+            "zip_code": "39311"
+        },
+        {
+            "id": 1053,
+            "province_id": 17,
+            "name": "Kabupaten Muko-Muko",
+            "zip_code": "39111"
+        },
+        {
+            "id": 1054,
+            "province_id": 17,
+            "name": "Kabupaten Bengkulu Selatan",
+            "zip_code": "38811"
+        },
+        {
+            "id": 1055,
+            "province_id": 17,
+            "name": "Kota Bengkulu",
+            "zip_code": "38211"
+        },
+        {
+            "id": 1056,
+            "province_id": 18,
+            "name": "Kabupaten Lampung Selatan",
+            "zip_code": "35311"
+        },
+        {
+            "id": 1057,
+            "province_id": 18,
+            "name": "Kabupaten Lampung Tengah",
+            "zip_code": "34211"
+        },
+        {
+            "id": 1058,
+            "province_id": 18,
+            "name": "Kabupaten Lampung Utara",
+            "zip_code": "34411"
+        },
+        {
+            "id": 1059,
+            "province_id": 18,
+            "name": "Kabupaten Way Kanan",
+            "zip_code": "34711"
+        },
+        {
+            "id": 1060,
+            "province_id": 18,
+            "name": "Kabupaten Tulang Bawang",
+            "zip_code": "34711"
+        },
+        {
+            "id": 1061,
+            "province_id": 18,
+            "name": "Kabupaten Pesisir Barat",
+            "zip_code": "34511"
+        },
+        {
+            "id": 1062,
+            "province_id": 18,
+            "name": "Kota Bandar Lampung",
+            "zip_code": "35111"
+        },
+        {
+            "id": 1063,
+            "province_id": 18,
+            "name": "Kota Metro",
+            "zip_code": "34111"
+        },
+        {
+            "id": 1064,
+            "province_id": 31,
+            "name": "Jakarta Pusat",
+            "zip_code": "12190"
+        },
+        {
+            "id": 1065,
+            "province_id": 31,
+            "name": "Jakarta Utara",
+            "zip_code": "14110"
+        },
+        {
+            "id": 1066,
+            "province_id": 31,
+            "name": "Jakarta Barat",
+            "zip_code": "11210"
+        },
+        {
+            "id": 1067,
+            "province_id": 31,
+            "name": "Jakarta Selatan",
+            "zip_code": "12190"
+        },
+        {
+            "id": 1068,
+            "province_id": 31,
+            "name": "Jakarta Timur",
+            "zip_code": "13210"
+        },
+        {
+            "id": 1069,
+            "province_id": 31,
+            "name": "Kepulauan Seribu",
+            "zip_code": "14420"
+        },
+        {
+            "id": 1070,
+            "province_id": 32,
+            "name": "Kabupaten Bogor",
+            "zip_code": "16711"
+        },
+        {
+            "id": 1071,
+            "province_id": 32,
+            "name": "Kabupaten Sukabumi",
+            "zip_code": "43311"
+        },
+        {
+            "id": 1072,
+            "province_id": 32,
+            "name": "Kabupaten Cianjur",
+            "zip_code": "43211"
+        },
+        {
+            "id": 1073,
+            "province_id": 32,
+            "name": "Kabupaten Bandung",
+            "zip_code": "40711"
+        },
+        {
+            "id": 1074,
+            "province_id": 32,
+            "name": "Kabupaten Garut",
+            "zip_code": "44111"
+        },
+        {
+            "id": 1075,
+            "province_id": 32,
+            "name": "Kabupaten Tasikmalaya",
+            "zip_code": "46411"
+        },
+        {
+            "id": 1076,
+            "province_id": 32,
+            "name": "Kabupaten Ciamis",
+            "zip_code": "46411"
+        },
+        {
+            "id": 1077,
+            "province_id": 32,
+            "name": "Kabupaten Kuningan",
+            "zip_code": "45611"
+        },
+        {
+            "id": 1078,
+            "province_id": 32,
+            "name": "Kabupaten Cirebon",
+            "zip_code": "45411"
+        },
+        {
+            "id": 1079,
+            "province_id": 32,
+            "name": "Kabupaten Majalengka",
+            "zip_code": "45411"
+        },
+        {
+            "id": 1080,
+            "province_id": 32,
+            "name": "Kabupaten Sumedang",
+            "zip_code": "45311"
+        },
+        {
+            "id": 1081,
+            "province_id": 32,
+            "name": "Kabupaten Indramayu",
+            "zip_code": "45211"
+        },
+        {
+            "id": 1082,
+            "province_id": 32,
+            "name": "Kabupaten Subang",
+            "zip_code": "41211"
+        },
+        {
+            "id": 1083,
+            "province_id": 32,
+            "name": "Kabupaten Purwakarta",
+            "zip_code": "41111"
+        },
+        {
+            "id": 1084,
+            "province_id": 32,
+            "name": "Kabupaten Karawang",
+            "zip_code": "41311"
+        },
+        {
+            "id": 1085,
+            "province_id": 32,
+            "name": "Kabupaten Bekasi",
+            "zip_code": "17811"
+        },
+        {
+            "id": 1086,
+            "province_id": 32,
+            "name": "Kabupaten Bandung Barat",
+            "zip_code": "40711"
+        },
+        {
+            "id": 1087,
+            "province_id": 32,
+            "name": "Kota Bogor",
+            "zip_code": "16111"
+        },
+        {
+            "id": 1088,
+            "province_id": 32,
+            "name": "Kota Sukabumi",
+            "zip_code": "43111"
+        },
+        {
+            "id": 1089,
+            "province_id": 32,
+            "name": "Kota Bandung",
+            "zip_code": "40111"
+        },
+        {
+            "id": 1090,
+            "province_id": 32,
+            "name": "Kota Cirebon",
+            "zip_code": "45111"
+        },
+        {
+            "id": 1091,
+            "province_id": 32,
+            "name": "Kota Tasikmalaya",
+            "zip_code": "46111"
+        },
+        {
+            "id": 1092,
+            "province_id": 32,
+            "name": "Kota Banjar",
+            "zip_code": "46311"
+        },
+        {
+            "id": 1093,
+            "province_id": 32,
+            "name": "Kota Depok",
+            "zip_code": "16411"
+        },
+        {
+            "id": 1094,
+            "province_id": 32,
+            "name": "Kota Cimahi",
+            "zip_code": "40511"
+        },
+        {
+            "id": 1095,
+            "province_id": 32,
+            "name": "Kota Bekasi",
+            "zip_code": "17111"
+        },
+        {
+            "id": 1096,
+            "province_id": 33,
+            "name": "Kabupaten Cilacap",
+            "zip_code": "53211"
+        },
+        {
+            "id": 1097,
+            "province_id": 33,
+            "name": "Kabupaten Banyumas",
+            "zip_code": "53111"
+        },
+        {
+            "id": 1098,
+            "province_id": 33,
+            "name": "Kabupaten Purbalingga",
+            "zip_code": "53311"
+        },
+        {
+            "id": 1099,
+            "province_id": 33,
+            "name": "Kabupaten Banjarnegara",
+            "zip_code": "53411"
+        },
+        {
+            "id": 1100,
+            "province_id": 33,
+            "name": "Kabupaten Kebumen",
+            "zip_code": "54311"
+        },
+        {
+            "id": 1101,
+            "province_id": 33,
+            "name": "Kabupaten Purworejo",
+            "zip_code": "54111"
+        },
+        {
+            "id": 1102,
+            "province_id": 33,
+            "name": "Kabupaten Wonosobo",
+            "zip_code": "54611"
+        },
+        {
+            "id": 1103,
+            "province_id": 33,
+            "name": "Kabupaten Magelang",
+            "zip_code": "56511"
+        },
+        {
+            "id": 1104,
+            "province_id": 33,
+            "name": "Kabupaten Boyolali",
+            "zip_code": "57311"
+        },
+        {
+            "id": 1105,
+            "province_id": 33,
+            "name": "Kabupaten Klaten",
+            "zip_code": "57411"
+        },
+        {
+            "id": 1106,
+            "province_id": 33,
+            "name": "Kabupaten Sukoharjo",
+            "zip_code": "57511"
+        },
+        {
+            "id": 1107,
+            "province_id": 33,
+            "name": "Kabupaten Wonogiri",
+            "zip_code": "57611"
+        },
+        {
+            "id": 1108,
+            "province_id": 33,
+            "name": "Kabupaten Karanganyar",
+            "zip_code": "57711"
+        },
+        {
+            "id": 1109,
+            "province_id": 33,
+            "name": "Kabupaten Sragen",
+            "zip_code": "57811"
+        },
+        {
+            "id": 1110,
+            "province_id": 33,
+            "name": "Kabupaten Grobogan",
+            "zip_code": "58111"
+        },
+        {
+            "id": 1111,
+            "province_id": 33,
+            "name": "Kabupaten Blora",
+            "zip_code": "58211"
+        },
+        {
+            "id": 1112,
+            "province_id": 33,
+            "name": "Kabupaten Rembang",
+            "zip_code": "59211"
+        },
+        {
+            "id": 1113,
+            "province_id": 33,
+            "name": "Kabupaten Pati",
+            "zip_code": "59111"
+        },
+        {
+            "id": 1114,
+            "province_id": 33,
+            "name": "Kabupaten Kudus",
+            "zip_code": "59311"
+        },
+        {
+            "id": 1115,
+            "province_id": 33,
+            "name": "Kabupaten Jepara",
+            "zip_code": "59411"
+        },
+        {
+            "id": 1116,
+            "province_id": 33,
+            "name": "Kabupaten Demak",
+            "zip_code": "59511"
+        },
+        {
+            "id": 1117,
+            "province_id": 33,
+            "name": "Kabupaten Semarang",
+            "zip_code": "50711"
+        },
+        {
+            "id": 1118,
+            "province_id": 33,
+            "name": "Kabupaten Temanggung",
+            "zip_code": "56211"
+        },
+        {
+            "id": 1119,
+            "province_id": 33,
+            "name": "Kabupaten Kendal",
+            "zip_code": "51311"
+        },
+        {
+            "id": 1120,
+            "province_id": 33,
+            "name": "Kabupaten Batang",
+            "zip_code": "51411"
+        },
+        {
+            "id": 1121,
+            "province_id": 33,
+            "name": "Kabupaten Pekalongan",
+            "zip_code": "51411"
+        },
+        {
+            "id": 1122,
+            "province_id": 33,
+            "name": "Kabupaten Pemalang",
+            "zip_code": "52211"
+        },
+        {
+            "id": 1123,
+            "province_id": 33,
+            "name": "Kabupaten Tegal",
+            "zip_code": "52111"
+        },
+        {
+            "id": 1124,
+            "province_id": 33,
+            "name": "Kabupaten Brebes",
+            "zip_code": "52211"
+        },
+        {
+            "id": 1125,
+            "province_id": 33,
+            "name": "Kota Magelang",
+            "zip_code": "56111"
+        },
+        {
+            "id": 1126,
+            "province_id": 33,
+            "name": "Kota Surakarta",
+            "zip_code": "57111"
+        },
+        {
+            "id": 1127,
+            "province_id": 33,
+            "name": "Kota Salatiga",
+            "zip_code": "50711"
+        },
+        {
+            "id": 1128,
+            "province_id": 33,
+            "name": "Kota Semarang",
+            "zip_code": "50111"
+        },
+        {
+            "id": 1129,
+            "province_id": 33,
+            "name": "Kota Pekalongan",
+            "zip_code": "51111"
+        },
+        {
+            "id": 1130,
+            "province_id": 33,
+            "name": "Kota Tegal",
+            "zip_code": "52111"
+        },
+        {
+            "id": 1131,
+            "province_id": 34,
+            "name": "Kabupaten Sleman",
+            "zip_code": "55511"
+        },
+        {
+            "id": 1132,
+            "province_id": 34,
+            "name": "Kabupaten Bantul",
+            "zip_code": "55711"
+        },
+        {
+            "id": 1133,
+            "province_id": 34,
+            "name": "Kabupaten Gunung Kidul",
+            "zip_code": "55811"
+        },
+        {
+            "id": 1134,
+            "province_id": 34,
+            "name": "Kabupaten Kulonprogo",
+            "zip_code": "55611"
+        },
+        {
+            "id": 1135,
+            "province_id": 34,
+            "name": "Kota Yogyakarta",
+            "zip_code": "55111"
+        },
+        {
+            "id": 1136,
+            "province_id": 35,
+            "name": "Kabupaten Pacitan",
+            "zip_code": "63511"
+        },
+        {
+            "id": 1137,
+            "province_id": 35,
+            "name": "Kabupaten Ponorogo",
+            "zip_code": "63411"
+        },
+        {
+            "id": 1138,
+            "province_id": 35,
+            "name": "Kabupaten Trenggalek",
+            "zip_code": "66211"
+        },
+        {
+            "id": 1139,
+            "province_id": 35,
+            "name": "Kabupaten Tulungagung",
+            "zip_code": "66211"
+        },
+        {
+            "id": 1140,
+            "province_id": 35,
+            "name": "Kabupaten Blitar",
+            "zip_code": "66111"
+        },
+        {
+            "id": 1141,
+            "province_id": 35,
+            "name": "Kabupaten Kediri",
+            "zip_code": "64111"
+        },
+        {
+            "id": 1142,
+            "province_id": 35,
+            "name": "Kabupaten Malang",
+            "zip_code": "65611"
+        },
+        {
+            "id": 1143,
+            "province_id": 35,
+            "name": "Kabupaten Lumajang",
+            "zip_code": "67311"
+        },
+        {
+            "id": 1144,
+            "province_id": 35,
+            "name": "Kabupaten Jember",
+            "zip_code": "68111"
+        },
+        {
+            "id": 1145,
+            "province_id": 35,
+            "name": "Kabupaten Banyuwangi",
+            "zip_code": "68411"
+        },
+        {
+            "id": 1146,
+            "province_id": 35,
+            "name": "Kabupaten Bondowoso",
+            "zip_code": "68211"
+        },
+        {
+            "id": 1147,
+            "province_id": 35,
+            "name": "Kabupaten Situbondo",
+            "zip_code": "68311"
+        },
+        {
+            "id": 1148,
+            "province_id": 35,
+            "name": "Kabupaten Probolinggo",
+            "zip_code": "67211"
+        },
+        {
+            "id": 1149,
+            "province_id": 35,
+            "name": "Kabupaten Pasuruan",
+            "zip_code": "67111"
+        },
+        {
+            "id": 1150,
+            "province_id": 35,
+            "name": "Kabupaten Sidoarjo",
+            "zip_code": "61211"
+        },
+        {
+            "id": 1151,
+            "province_id": 35,
+            "name": "Kabupaten Mojokerto",
+            "zip_code": "61311"
+        },
+        {
+            "id": 1152,
+            "province_id": 35,
+            "name": "Kabupaten Jombang",
+            "zip_code": "61411"
+        },
+        {
+            "id": 1153,
+            "province_id": 35,
+            "name": "Kabupaten Nganjuk",
+            "zip_code": "64411"
+        },
+        {
+            "id": 1154,
+            "province_id": 35,
+            "name": "Kabupaten Madiun",
+            "zip_code": "63311"
+        },
+        {
+            "id": 1155,
+            "province_id": 35,
+            "name": "Kabupaten Magetan",
+            "zip_code": "63311"
+        },
+        {
+            "id": 1156,
+            "province_id": 35,
+            "name": "Kabupaten Ngawi",
+            "zip_code": "63811"
+        },
+        {
+            "id": 1157,
+            "province_id": 35,
+            "name": "Kabupaten Bojonegoro",
+            "zip_code": "62111"
+        },
+        {
+            "id": 1158,
+            "province_id": 35,
+            "name": "Kabupaten Tuban",
+            "zip_code": "62311"
+        },
+        {
+            "id": 1159,
+            "province_id": 35,
+            "name": "Kabupaten Lamongan",
+            "zip_code": "62211"
+        },
+        {
+            "id": 1160,
+            "province_id": 35,
+            "name": "Kabupaten Gresik",
+            "zip_code": "61111"
+        },
+        {
+            "id": 1161,
+            "province_id": 35,
+            "name": "Kabupaten Bangkalan",
+            "zip_code": "69111"
+        },
+        {
+            "id": 1162,
+            "province_id": 35,
+            "name": "Kabupaten Sampang",
+            "zip_code": "69211"
+        },
+        {
+            "id": 1163,
+            "province_id": 35,
+            "name": "Kabupaten Pamekasan",
+            "zip_code": "69311"
+        },
+        {
+            "id": 1164,
+            "province_id": 35,
+            "name": "Kabupaten Sumenep",
+            "zip_code": "69411"
+        },
+        {
+            "id": 1165,
+            "province_id": 35,
+            "name": "Kota Kediri",
+            "zip_code": "64111"
+        },
+        {
+            "id": 1166,
+            "province_id": 35,
+            "name": "Kota Blitar",
+            "zip_code": "66111"
+        },
+        {
+            "id": 1167,
+            "province_id": 35,
+            "name": "Kota Malang",
+            "zip_code": "65111"
+        },
+        {
+            "id": 1168,
+            "province_id": 35,
+            "name": "Kota Probolinggo",
+            "zip_code": "67211"
+        },
+        {
+            "id": 1169,
+            "province_id": 35,
+            "name": "Kota Pasuruan",
+            "zip_code": "67111"
+        },
+        {
+            "id": 1170,
+            "province_id": 35,
+            "name": "Kota Mojokerto",
+            "zip_code": "61311"
+        },
+        {
+            "id": 1171,
+            "province_id": 35,
+            "name": "Kota Madiun",
+            "zip_code": "63111"
+        },
+        {
+            "id": 1172,
+            "province_id": 35,
+            "name": "Kota Surabaya",
+            "zip_code": "60111"
+        },
+        {
+            "id": 1173,
+            "province_id": 35,
+            "name": "Kota Batu",
+            "zip_code": "65311"
+        },
+        {
+            "id": 1174,
+            "province_id": 36,
+            "name": "Kabupaten Pandeglang",
+            "zip_code": "42211"
+        },
+        {
+            "id": 1175,
+            "province_id": 36,
+            "name": "Kabupaten Lebak",
+            "zip_code": "42311"
+        },
+        {
+            "id": 1176,
+            "province_id": 36,
+            "name": "Kabupaten Tangerang",
+            "zip_code": "15111"
+        },
+        {
+            "id": 1177,
+            "province_id": 36,
+            "name": "Kabupaten Serang",
+            "zip_code": "42111"
+        },
+        {
+            "id": 1178,
+            "province_id": 36,
+            "name": "Kota Tangerang",
+            "zip_code": "15111"
+        },
+        {
+            "id": 1179,
+            "province_id": 36,
+            "name": "Kota Cilegon",
+            "zip_code": "42411"
+        },
+        {
+            "id": 1180,
+            "province_id": 36,
+            "name": "Kota Serang",
+            "zip_code": "42111"
+        },
+        {
+            "id": 1181,
+            "province_id": 36,
+            "name": "Kota Tangerang Selatan",
+            "zip_code": "15311"
+        },
+        {
+            "id": 1182,
+            "province_id": 51,
+            "name": "Kabupaten Jembrana",
+            "zip_code": "82211"
+        },
+        {
+            "id": 1183,
+            "province_id": 51,
+            "name": "Kabupaten Tabanan",
+            "zip_code": "82111"
+        },
+        {
+            "id": 1184,
+            "province_id": 51,
+            "name": "Kabupaten Badung",
+            "zip_code": "80211"
+        },
+        {
+            "id": 1185,
+            "province_id": 51,
+            "name": "Kabupaten Gianyar",
+            "zip_code": "80511"
+        },
+        {
+            "id": 1186,
+            "province_id": 51,
+            "name": "Kabupaten Klungkung",
+            "zip_code": "80711"
+        },
+        {
+            "id": 1187,
+            "province_id": 51,
+            "name": "Kabupaten Bangli",
+            "zip_code": "80711"
+        },
+        {
+            "id": 1188,
+            "province_id": 51,
+            "name": "Kota Denpasar",
+            "zip_code": "80111"
+        },
+        {
+            "id": 1189,
+            "province_id": 52,
+            "name": "Kabupaten Lombok Utara",
+            "zip_code": "83711"
+        },
+        {
+            "id": 1190,
+            "province_id": 52,
+            "name": "Kabupaten Lombok Barat",
+            "zip_code": "83311"
+        },
+        {
+            "id": 1191,
+            "province_id": 52,
+            "name": "Kabupaten Lombok Tengah",
+            "zip_code": "83211"
+        },
+        {
+            "id": 1192,
+            "province_id": 52,
+            "name": "Kabupaten Lombok Timur",
+            "zip_code": "83511"
+        },
+        {
+            "id": 1193,
+            "province_id": 52,
+            "name": "Kabupaten Sumbawa",
+            "zip_code": "84411"
+        },
+        {
+            "id": 1194,
+            "province_id": 52,
+            "name": "Kabupaten Sumbawa Barat",
+            "zip_code": "84511"
+        },
+        {
+            "id": 1195,
+            "province_id": 52,
+            "name": "Kota Mataram",
+            "zip_code": "83111"
+        },
+        {
+            "id": 1196,
+            "province_id": 52,
+            "name": "Kota Bima",
+            "zip_code": "84711"
+        },
+        {
+            "id": 1197,
+            "province_id": 53,
+            "name": "Kabupaten Kupang",
+            "zip_code": "85211"
+        },
+        {
+            "id": 1198,
+            "province_id": 53,
+            "name": "Kabupaten Timor Tengah Utara",
+            "zip_code": "85511"
+        },
+        {
+            "id": 1199,
+            "province_id": 53,
+            "name": "Kabupaten Timor Tengah Selatan",
+            "zip_code": "85611"
+        },
+        {
+            "id": 1200,
+            "province_id": 53,
+            "name": "Kabupaten Timor Timur",
+            "zip_code": "85811"
+        },
+        {
+            "id": 1201,
+            "province_id": 53,
+            "name": "Kabupaten Belu",
+            "zip_code": "85711"
+        },
+        {
+            "id": 1202,
+            "province_id": 53,
+            "name": "Kabupaten Alor",
+            "zip_code": "85811"
+        },
+        {
+            "id": 1203,
+            "province_id": 53,
+            "name": "Kabupaten Flores Timur",
+            "zip_code": "86311"
+        },
+        {
+            "id": 1204,
+            "province_id": 53,
+            "name": "Kabupaten Ende",
+            "zip_code": "86311"
+        },
+        {
+            "id": 1205,
+            "province_id": 53,
+            "name": "Kabupaten Ngada",
+            "zip_code": "86311"
+        },
+        {
+            "id": 1206,
+            "province_id": 53,
+            "name": "Kabupaten Manggarai",
+            "zip_code": "86211"
+        },
+        {
+            "id": 1207,
+            "province_id": 53,
+            "name": "Kabupaten Sumba Timur",
+            "zip_code": "87311"
+        },
+        {
+            "id": 1208,
+            "province_id": 53,
+            "name": "Kabupaten Sumba Barat",
+            "zip_code": "87411"
+        },
+        {
+            "id": 1209,
+            "province_id": 53,
+            "name": "Kabupaten Rote Ndao",
+            "zip_code": "85711"
+        },
+        {
+            "id": 1210,
+            "province_id": 53,
+            "name": "Kota Kupang",
+            "zip_code": "85111"
+        },
+        {
+            "id": 1211,
+            "province_id": 61,
+            "name": "Kabupaten Sambas",
+            "zip_code": "78411"
+        },
+        {
+            "id": 1212,
+            "province_id": 61,
+            "name": "Kabupaten Mempawah",
+            "zip_code": "78311"
+        },
+        {
+            "id": 1213,
+            "province_id": 61,
+            "name": "Kabupaten Sanggau",
+            "zip_code": "78511"
+        },
+        {
+            "id": 1214,
+            "province_id": 61,
+            "name": "Kabupaten Ketapang",
+            "zip_code": "78811"
+        },
+        {
+            "id": 1215,
+            "province_id": 61,
+            "name": "Kabupaten Sintang",
+            "zip_code": "78611"
+        },
+        {
+            "id": 1216,
+            "province_id": 61,
+            "name": "Kabupaten Kapuas Hulu",
+            "zip_code": "78711"
+        },
+        {
+            "id": 1217,
+            "province_id": 61,
+            "name": "Kabupaten Bengkayang",
+            "zip_code": "78711"
+        },
+        {
+            "id": 1218,
+            "province_id": 61,
+            "name": "Kota Pontianak",
+            "zip_code": "78111"
+        },
+        {
+            "id": 1219,
+            "province_id": 61,
+            "name": "Kota Singkawang",
+            "zip_code": "79111"
+        },
+        {
+            "id": 1220,
+            "province_id": 62,
+            "name": "Kabupaten Kotawaringin Barat",
+            "zip_code": "73411"
+        },
+        {
+            "id": 1221,
+            "province_id": 62,
+            "name": "Kabupaten Kotawaringin Timur",
+            "zip_code": "73311"
+        },
+        {
+            "id": 1222,
+            "province_id": 62,
+            "name": "Kabupaten Kapuas",
+            "zip_code": "73811"
+        },
+        {
+            "id": 1223,
+            "province_id": 62,
+            "name": "Kabupaten Barito Selatan",
+            "zip_code": "71611"
+        },
+        {
+            "id": 1224,
+            "province_id": 62,
+            "name": "Kabupaten Barito Utara",
+            "zip_code": "73811"
+        },
+        {
+            "id": 1225,
+            "province_id": 62,
+            "name": "Kabupaten Sukamara",
+            "zip_code": "73411"
+        },
+        {
+            "id": 1226,
+            "province_id": 62,
+            "name": "Kabupaten Lamandau",
+            "zip_code": "74411"
+        },
+        {
+            "id": 1227,
+            "province_id": 62,
+            "name": "Kabupaten Seruyan",
+            "zip_code": "74211"
+        },
+        {
+            "id": 1228,
+            "province_id": 62,
+            "name": "Kabupaten Katingan",
+            "zip_code": "74711"
+        },
+        {
+            "id": 1229,
+            "province_id": 62,
+            "name": "Kabupaten Pulang Pisau",
+            "zip_code": "74711"
+        },
+        {
+            "id": 1230,
+            "province_id": 62,
+            "name": "Kabupaten Gunung Mas",
+            "zip_code": "74911"
+        },
+        {
+            "id": 1231,
+            "province_id": 62,
+            "name": "Kabupaten Barito Timur",
+            "zip_code": "74711"
+        },
+        {
+            "id": 1232,
+            "province_id": 62,
+            "name": "Kota Palangkaraya",
+            "zip_code": "73111"
+        },
+        {
+            "id": 1233,
+            "province_id": 63,
+            "name": "Kabupaten Tanah Laut",
+            "zip_code": "70811"
+        },
+        {
+            "id": 1234,
+            "province_id": 63,
+            "name": "Kabupaten Kota Baru",
+            "zip_code": "72111"
+        },
+        {
+            "id": 1235,
+            "province_id": 63,
+            "name": "Kabupaten Banjar",
+            "zip_code": "71511"
+        },
+        {
+            "id": 1236,
+            "province_id": 63,
+            "name": "Kabupaten Barito Kuala",
+            "zip_code": "70711"
+        },
+        {
+            "id": 1237,
+            "province_id": 63,
+            "name": "Kabupaten Tabalong",
+            "zip_code": "71711"
+        },
+        {
+            "id": 1238,
+            "province_id": 63,
+            "name": "Kabupaten Hulu Sungai Selatan",
+            "zip_code": "71411"
+        },
+        {
+            "id": 1239,
+            "province_id": 63,
+            "name": "Kabupaten Hulu Sungai Tengah",
+            "zip_code": "71311"
+        },
+        {
+            "id": 1240,
+            "province_id": 63,
+            "name": "Kabupaten Hulu Sungai Utara",
+            "zip_code": "71211"
+        },
+        {
+            "id": 1241,
+            "province_id": 63,
+            "name": "Kota Banjarmasin",
+            "zip_code": "70111"
+        },
+        {
+            "id": 1242,
+            "province_id": 63,
+            "name": "Kota Banjarbaru",
+            "zip_code": "70711"
+        },
+        {
+            "id": 1243,
+            "province_id": 64,
+            "name": "Kabupaten Paser",
+            "zip_code": "76111"
+        },
+        {
+            "id": 1244,
+            "province_id": 64,
+            "name": "Kabupaten Kutai Barat",
+            "zip_code": "75611"
+        },
+        {
+            "id": 1245,
+            "province_id": 64,
+            "name": "Kabupaten Kutai Kartanegara",
+            "zip_code": "75511"
+        },
+        {
+            "id": 1246,
+            "province_id": 64,
+            "name": "Kabupaten Kutai Timur",
+            "zip_code": "75611"
+        },
+        {
+            "id": 1247,
+            "province_id": 64,
+            "name": "Kabupaten Berau",
+            "zip_code": "77311"
+        },
+        {
+            "id": 1248,
+            "province_id": 64,
+            "name": "Kota Balikpapan",
+            "zip_code": "76111"
+        },
+        {
+            "id": 1249,
+            "province_id": 64,
+            "name": "Kota Samarinda",
+            "zip_code": "75111"
+        },
+        {
+            "id": 1250,
+            "province_id": 64,
+            "name": "Kota Tarakan",
+            "zip_code": "77111"
+        },
+        {
+            "id": 1251,
+            "province_id": 64,
+            "name": "Kota Tenggarong",
+            "zip_code": "75511"
+        },
+        {
+            "id": 1252,
+            "province_id": 65,
+            "name": "Kabupaten Bolaang Mongondow",
+            "zip_code": "95711"
+        },
+        {
+            "id": 1253,
+            "province_id": 65,
+            "name": "Kabupaten Minahasa",
+            "zip_code": "95511"
+        },
+        {
+            "id": 1254,
+            "province_id": 65,
+            "name": "Kabupaten Kepulauan Sangihe",
+            "zip_code": "97811"
+        },
+        {
+            "id": 1255,
+            "province_id": 65,
+            "name": "Kabupaten Kepulauan Talaud",
+            "zip_code": "97811"
+        },
+        {
+            "id": 1256,
+            "province_id": 65,
+            "name": "Kota Manado",
+            "zip_code": "95111"
+        },
+        {
+            "id": 1257,
+            "province_id": 65,
+            "name": "Kota Bitung",
+            "zip_code": "95211"
+        },
+        {
+            "id": 1258,
+            "province_id": 65,
+            "name": "Kota Tomohon",
+            "zip_code": "95311"
+        },
+        {
+            "id": 1259,
+            "province_id": 65,
+            "name": "Kota Kotamobagu",
+            "zip_code": "95611"
+        },
+        {
+            "id": 1260,
+            "province_id": 71,
+            "name": "Kabupaten Banggai",
+            "zip_code": "94711"
+        },
+        {
+            "id": 1261,
+            "province_id": 71,
+            "name": "Kabupaten Poso",
+            "zip_code": "94611"
+        },
+        {
+            "id": 1262,
+            "province_id": 71,
+            "name": "Kabupaten Donggala",
+            "zip_code": "94511"
+        },
+        {
+            "id": 1263,
+            "province_id": 71,
+            "name": "Kabupaten Toli-toli",
+            "zip_code": "94511"
+        },
+        {
+            "id": 1264,
+            "province_id": 71,
+            "name": "Kabupaten Buol",
+            "zip_code": "94611"
+        },
+        {
+            "id": 1265,
+            "province_id": 71,
+            "name": "Kabupaten Morowali",
+            "zip_code": "94811"
+        },
+        {
+            "id": 1266,
+            "province_id": 71,
+            "name": "Kota Palu",
+            "zip_code": "94111"
+        },
+        {
+            "id": 1267,
+            "province_id": 72,
+            "name": "Kabupaten Selayar",
+            "zip_code": "90811"
+        },
+        {
+            "id": 1268,
+            "province_id": 72,
+            "name": "Kabupaten Bulukumba",
+            "zip_code": "92711"
+        },
+        {
+            "id": 1269,
+            "province_id": 72,
+            "name": "Kabupaten Bantaeng",
+            "zip_code": "92811"
+        },
+        {
+            "id": 1270,
+            "province_id": 72,
+            "name": "Kabupaten Jeneponto",
+            "zip_code": "92911"
+        },
+        {
+            "id": 1271,
+            "province_id": 72,
+            "name": "Kabupaten Takalar",
+            "zip_code": "92111"
+        },
+        {
+            "id": 1272,
+            "province_id": 72,
+            "name": "Kabupaten Gowa",
+            "zip_code": "92111"
+        },
+        {
+            "id": 1273,
+            "province_id": 72,
+            "name": "Kabupaten Sinjai",
+            "zip_code": "92611"
+        },
+        {
+            "id": 1274,
+            "province_id": 72,
+            "name": "Kabupaten Bone",
+            "zip_code": "90511"
+        },
+        {
+            "id": 1275,
+            "province_id": 72,
+            "name": "Kabupaten Maros",
+            "zip_code": "90511"
+        },
+        {
+            "id": 1276,
+            "province_id": 72,
+            "name": "Kabupaten Pangkajene Dan Kepulauan",
+            "zip_code": "90611"
+        },
+        {
+            "id": 1277,
+            "province_id": 72,
+            "name": "Kabupaten Barru",
+            "zip_code": "90711"
+        },
+        {
+            "id": 1278,
+            "province_id": 72,
+            "name": "Kabupaten Soppeng",
+            "zip_code": "90811"
+        },
+        {
+            "id": 1279,
+            "province_id": 72,
+            "name": "Kabupaten Wajo",
+            "zip_code": "90911"
+        },
+        {
+            "id": 1280,
+            "province_id": 72,
+            "name": "Kabupaten Sidenreng Rappang",
+            "zip_code": "91311"
+        },
+        {
+            "id": 1281,
+            "province_id": 72,
+            "name": "Kabupaten Pinrang",
+            "zip_code": "91311"
+        },
+        {
+            "id": 1282,
+            "province_id": 72,
+            "name": "Kabupaten Enrekang",
+            "zip_code": "91711"
+        },
+        {
+            "id": 1283,
+            "province_id": 72,
+            "name": "Kabupaten Luwu",
+            "zip_code": "91311"
+        },
+        {
+            "id": 1284,
+            "province_id": 72,
+            "name": "Kabupaten Toraja",
+            "zip_code": "91811"
+        },
+        {
+            "id": 1285,
+            "province_id": 72,
+            "name": "Kota Makassar",
+            "zip_code": "90111"
+        },
+        {
+            "id": 1286,
+            "province_id": 72,
+            "name": "Kota Parepare",
+            "zip_code": "91111"
+        },
+        {
+            "id": 1287,
+            "province_id": 72,
+            "name": "Kota Palopo",
+            "zip_code": "91711"
+        },
+        {
+            "id": 1288,
+            "province_id": 73,
+            "name": "Kabupaten Buton",
+            "zip_code": "93711"
+        },
+        {
+            "id": 1289,
+            "province_id": 73,
+            "name": "Kabupaten Muna",
+            "zip_code": "93611"
+        },
+        {
+            "id": 1290,
+            "province_id": 73,
+            "name": "Kabupaten Konawe",
+            "zip_code": "93511"
+        },
+        {
+            "id": 1291,
+            "province_id": 73,
+            "name": "Kabupaten Konawe Selatan",
+            "zip_code": "93711"
+        },
+        {
+            "id": 1292,
+            "province_id": 73,
+            "name": "Kabupaten Bombana",
+            "zip_code": "93811"
+        },
+        {
+            "id": 1293,
+            "province_id": 73,
+            "name": "Kota Kendari",
+            "zip_code": "93111"
+        },
+        {
+            "id": 1294,
+            "province_id": 73,
+            "name": "Kota Baubau",
+            "zip_code": "93711"
+        },
+        {
+            "id": 1295,
+            "province_id": 81,
+            "name": "Kabupaten Maluku Tenggara Barat",
+            "zip_code": "97611"
+        },
+        {
+            "id": 1296,
+            "province_id": 81,
+            "name": "Kabupaten Maluku Tenggara",
+            "zip_code": "97711"
+        },
+        {
+            "id": 1297,
+            "province_id": 81,
+            "name": "Kabupaten Maluku Tengah",
+            "zip_code": "97511"
+        },
+        {
+            "id": 1298,
+            "province_id": 81,
+            "name": "Kabupaten Buru",
+            "zip_code": "97511"
+        },
+        {
+            "id": 1299,
+            "province_id": 81,
+            "name": "Kabupaten Seram Bagian Barat",
+            "zip_code": "97551"
+        },
+        {
+            "id": 1300,
+            "province_id": 81,
+            "name": "Kabupaten Seram Bagian Timur",
+            "zip_code": "97651"
+        },
+        {
+            "id": 1301,
+            "province_id": 81,
+            "name": "Kota Ambon",
+            "zip_code": "97111"
+        },
+        {
+            "id": 1302,
+            "province_id": 81,
+            "name": "Kota Tual",
+            "zip_code": "97711"
+        },
+        {
+            "id": 1303,
+            "province_id": 82,
+            "name": "Kabupaten Halmahera Barat",
+            "zip_code": "97811"
+        },
+        {
+            "id": 1304,
+            "province_id": 82,
+            "name": "Kabupaten Halmahera Tengah",
+            "zip_code": "97811"
+        },
+        {
+            "id": 1305,
+            "province_id": 82,
+            "name": "Kabupaten Halmahera Utara",
+            "zip_code": "97811"
+        },
+        {
+            "id": 1306,
+            "province_id": 82,
+            "name": "Kabupaten Kepulauan Sula",
+            "zip_code": "97911"
+        },
+        {
+            "id": 1307,
+            "province_id": 82,
+            "name": "Kota Ternate",
+            "zip_code": "97111"
+        },
+        {
+            "id": 1308,
+            "province_id": 82,
+            "name": "Kota Tidore Kepulauan",
+            "zip_code": "97211"
+        },
+        {
+            "id": 1309,
+            "province_id": 91,
+            "name": "Kabupaten Merauke",
+            "zip_code": "99611"
+        },
+        {
+            "id": 1310,
+            "province_id": 91,
+            "name": "Kabupaten Bade",
+            "zip_code": "99711"
+        },
+        {
+            "id": 1311,
+            "province_id": 91,
+            "name": "Kabupaten Asmat",
+            "zip_code": "99811"
+        },
+        {
+            "id": 1312,
+            "province_id": 91,
+            "name": "Kabupaten Yahukimo",
+            "zip_code": "99911"
+        },
+        {
+            "id": 1313,
+            "province_id": 91,
+            "name": "Kabupaten Kerom",
+            "zip_code": "98411"
+        },
+        {
+            "id": 1314,
+            "province_id": 91,
+            "name": "Kabupaten Pegunungan Bintang",
+            "zip_code": "99211"
+        },
+        {
+            "id": 1315,
+            "province_id": 91,
+            "name": "Kabupaten Jayapura",
+            "zip_code": "99411"
+        },
+        {
+            "id": 1316,
+            "province_id": 91,
+            "name": "Kota Jayapura",
+            "zip_code": "99111"
+        }
+    ],
+    "updated_at": "2026-01-04T01:36:55+00:00"
+}

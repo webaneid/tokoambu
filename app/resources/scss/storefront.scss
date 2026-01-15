@@ -1,0 +1,796 @@
+/**
+ * TOKO AMBU STOREFRONT — SCSS CUSTOMIZATION
+ * Mobile-First App Design (480px max-width)
+ * Design Tokens based on Toko Ambu Branding
+ */
+
+// ============================================================================
+// 1) DESIGN TOKENS & COLOR PALETTE
+// ============================================================================
+
+// Primary Color (Orange) — CTA, highlights, important
+$color-primary: var(--ane-color-primary, #F17B0D);
+$color-primary-hover: var(--ane-color-primary-hover, #DD5700);
+$color-primary-light: var(--ane-color-primary-light, #FFF5F0);
+
+// Secondary Color (Blue) — Info, links, badges
+$color-secondary: var(--ane-color-secondary, #0D36AA);
+$color-secondary-light: #075AC2;
+$color-secondary-lighter: #E3F2FD;
+
+// Accent Color (Pink) — Special highlights, badges, status
+$color-accent: var(--ane-color-alternative, #D00086);
+$color-accent-light: #D836A5;
+$color-accent-lighter: #FCE4EC;
+
+// Neutral Colors — Base UI, text, borders
+$color-white: #FFFFFF;
+$color-gray-50: var(--ane-color-light-gray, #F9FAFB);
+$color-gray-100: #F3F4F6;
+$color-gray-200: #E5E7EB;
+$color-gray-300: #D1D5DB;
+$color-gray-400: #9CA3AF;
+$color-gray-500: #6B7280;
+$color-gray-600: #4B5563;
+$color-gray-700: #374151;
+$color-gray-900: var(--ane-color-dark, #1F2937);
+
+// Semantic Colors
+$color-success: #10B981;
+$color-warning: #F59E0B;
+$color-danger: #EF4444;
+$color-info: $color-secondary;
+
+// ============================================================================
+// 2) TYPOGRAPHY SCALE (Mobile-Optimized)
+// ============================================================================
+
+$font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif;
+$font-family-heading: $font-family-base;
+$font-family-mono: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace;
+
+// Font sizes (mobile first)
+$font-size-xs: 12px;      // Captions, meta info
+$font-size-sm: 14px;      // Body text, labels
+$font-size-base: 16px;    // Default body
+$font-size-lg: 18px;      // Emphasized, prices
+$font-size-xl: 20px;      // Section titles
+$font-size-2xl: 24px;     // Page titles
+$font-size-3xl: 28px;     // Hero titles
+
+// Font weights
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-weight-extrabold: 800;
+
+// Line heights
+$line-height-tight: 1.2;
+$line-height-normal: 1.5;
+$line-height-relaxed: 1.75;
+
+// ============================================================================
+// 3) SPACING SCALE
+// ============================================================================
+
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 12px;
+$spacing-lg: 16px;
+$spacing-xl: 20px;
+$spacing-2xl: 24px;
+$spacing-3xl: 32px;
+$spacing-4xl: 40px;
+
+// ============================================================================
+// 4) BORDER RADIUS
+// ============================================================================
+
+$radius-none: 0;
+$radius-sm: 4px;
+$radius-md: 8px;
+$radius-lg: 12px;
+$radius-xl: 16px;
+$radius-2xl: 20px;
+$radius-full: 9999px;
+
+// ============================================================================
+// 5) SHADOWS
+// ============================================================================
+
+$shadow-none: none;
+$shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+$shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+$shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+// ============================================================================
+// 6) TRANSITIONS & ANIMATIONS
+// ============================================================================
+
+$transition-fast: 150ms ease-in-out;
+$transition-base: 200ms ease-in-out;
+$transition-slow: 300ms ease-in-out;
+
+// ============================================================================
+// 7) BREAKPOINTS (Mobile-First, limited)
+// ============================================================================
+
+$breakpoint-sm: 360px;    // Small mobile
+$breakpoint-md: 480px;    // Standard mobile (our max-width)
+$breakpoint-lg: 768px;    // Tablet
+$breakpoint-xl: 1024px;   // Desktop
+$breakpoint-2xl: 1280px;  // Large desktop
+
+// ============================================================================
+// 8) LAYOUT
+// ============================================================================
+
+$max-width-app: 480px;
+$container-padding: $spacing-lg;
+$header-height: 56px;
+$bottom-nav-height: 64px;
+
+// ============================================================================
+// 9) Z-INDICES
+// ============================================================================
+
+$z-dropdown: 1000;
+$z-sticky: 1010;
+$z-fixed: 1020;
+$z-modal-backdrop: 1040;
+$z-modal: 1050;
+$z-tooltip: 1070;
+
+// ============================================================================
+// 10) UTILITY MIXINS
+// ============================================================================
+
+// Responsive container
+@mixin container {
+  max-width: $max-width-app;
+  width: 100%;
+  margin: 0 auto;
+  padding-left: $container-padding;
+  padding-right: $container-padding;
+}
+
+// Flexbox center
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Flexbox between
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// Absolute center
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// Truncate text
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Line clamp (multi-line truncate)
+@mixin line-clamp($lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// Smooth transition
+@mixin smooth-transition($property: all, $duration: $transition-base) {
+  transition: $property $duration;
+}
+
+// Focus ring (accessibility)
+@mixin focus-ring {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(var(--ane-color-primary-rgb, 241, 123, 13), 0.1), 0 0 0 5px $color-primary;
+}
+
+// ============================================================================
+// 11) GLOBAL STYLES
+// ============================================================================
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  line-height: $line-height-normal;
+  color: $color-gray-900;
+  background: $color-white;
+  margin: 0;
+  padding: 0;
+
+  // Desktop: gradient background
+  @media (min-width: $breakpoint-lg) {
+    background: linear-gradient(135deg, #FFF5F0 0%, #F0F4FF 100%);
+  }
+}
+
+// ============================================================================
+// 12) STOREFRONT CONTAINER
+// ============================================================================
+
+.storefront-app {
+  max-width: $max-width-app;
+  width: 100%;
+  margin: 0 auto;
+  background: $color-white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.storefront-header {
+  position: sticky;
+  top: 0;
+  z-index: $z-fixed;
+  background: $color-white;
+  border-bottom: 1px solid $color-gray-200;
+  padding: $spacing-lg;
+  height: $header-height;
+
+  @include flex-between;
+}
+
+.storefront-main {
+  flex: 1;
+  padding-bottom: $bottom-nav-height + $spacing-lg;
+}
+
+// Footer styles now live in components/_footer.scss
+
+// ============================================================================
+// 13) TYPOGRAPHY COMPONENTS
+// ============================================================================
+
+h1 {
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+  color: $color-gray-900;
+  margin: 0 0 $spacing-lg;
+}
+
+h2 {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-tight;
+  color: $color-gray-900;
+  margin: 0 0 $spacing-lg;
+}
+
+h3 {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-normal;
+  color: $color-gray-900;
+  margin: 0 0 $spacing-md;
+}
+
+p {
+  margin: 0 0 $spacing-lg;
+  color: $color-gray-700;
+
+  &.small {
+    font-size: $font-size-sm;
+    color: $color-gray-500;
+  }
+}
+
+a {
+  color: $color-secondary;
+  text-decoration: none;
+  @include smooth-transition;
+
+  &:hover {
+    color: $color-secondary-light;
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}
+
+// ============================================================================
+// 14) BUTTON COMPONENTS
+// ============================================================================
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  padding: $spacing-md $spacing-lg;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  border: none;
+  border-radius: $radius-lg;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  @include smooth-transition;
+  min-height: 44px; // Touch target
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+
+  // Primary button
+  &.btn-primary {
+    background: $color-primary;
+    color: $color-white;
+
+    &:hover {
+      background: $color-primary-hover;
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+
+    &:disabled {
+      background: $color-gray-400;
+      cursor: not-allowed;
+    }
+  }
+
+  // Secondary button
+  &.btn-secondary {
+    background: $color-gray-100;
+    color: $color-gray-900;
+    border: 1px solid $color-gray-200;
+
+    &:hover {
+      background: $color-gray-50;
+    }
+
+    &:disabled {
+      background: $color-gray-100;
+      color: $color-gray-400;
+      cursor: not-allowed;
+    }
+  }
+
+  // Outline button
+  &.btn-outline {
+    background: transparent;
+    color: $color-primary;
+    border: 2px solid $color-primary;
+
+    &:hover {
+      background: $color-primary-light;
+    }
+
+    &:disabled {
+      border-color: $color-gray-300;
+      color: $color-gray-300;
+      cursor: not-allowed;
+    }
+  }
+
+  // Full width
+  &.btn-block {
+    width: 100%;
+  }
+
+  // Sizes
+  &.btn-sm {
+    padding: $spacing-sm $spacing-md;
+    font-size: $font-size-xs;
+    min-height: 36px;
+  }
+
+  &.btn-lg {
+    padding: $spacing-lg $spacing-xl;
+    font-size: $font-size-base;
+    min-height: 48px;
+  }
+
+  // Loading state
+  &:disabled {
+    opacity: 0.6;
+  }
+}
+
+// ============================================================================
+// 15) INPUT COMPONENTS
+// ============================================================================
+
+.form-group {
+  margin-bottom: $spacing-lg;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+label {
+  display: block;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-gray-700;
+  margin-bottom: $spacing-sm;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: $spacing-md $spacing-lg;
+  font-size: $font-size-sm;
+  font-family: $font-family-base;
+  border: 1px solid $color-gray-300;
+  border-radius: $radius-lg;
+  color: $color-gray-900;
+  background: $color-white;
+  @include smooth-transition;
+  min-height: 44px;
+
+  &::placeholder {
+    color: $color-gray-400;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary;
+    box-shadow: 0 0 0 3px rgba(var(--ane-color-primary-rgb, 241, 123, 13), 0.1);
+  }
+
+  &:disabled {
+    background: $color-gray-50;
+    color: $color-gray-400;
+    cursor: not-allowed;
+  }
+
+  &.is-invalid {
+    border-color: $color-danger;
+
+    &:focus {
+      box-shadow: 0 0 0 3px rgba($color-danger, 0.1);
+    }
+  }
+
+  &.is-valid {
+    border-color: $color-success;
+
+    &:focus {
+      box-shadow: 0 0 0 3px rgba($color-success, 0.1);
+    }
+  }
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+// ============================================================================
+// 16) CARD COMPONENTS
+// ============================================================================
+
+.card {
+  background: $color-white;
+  border: 1px solid $color-gray-200;
+  border-radius: $radius-xl;
+  box-shadow: $shadow-sm;
+  overflow: hidden;
+  @include smooth-transition;
+
+  &:hover {
+    box-shadow: $shadow-md;
+  }
+}
+
+.card-header {
+  padding: $spacing-lg;
+  border-bottom: 1px solid $color-gray-200;
+  background: $color-gray-50;
+}
+
+.card-body {
+  padding: $spacing-lg;
+}
+
+.card-footer {
+  padding: $spacing-lg;
+  border-top: 1px solid $color-gray-200;
+  background: $color-gray-50;
+}
+
+// ============================================================================
+// 17) BADGE COMPONENTS
+// ============================================================================
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-sm $spacing-md;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  border-radius: $radius-full;
+  white-space: nowrap;
+
+  // Variants
+  &.badge-primary {
+    background: $color-primary-light;
+    color: $color-primary;
+  }
+
+  &.badge-secondary {
+    background: $color-secondary-lighter;
+    color: $color-secondary;
+  }
+
+  &.badge-success {
+    background: rgba($color-success, 0.1);
+    color: $color-success;
+  }
+
+  &.badge-danger {
+    background: rgba($color-danger, 0.1);
+    color: $color-danger;
+  }
+
+  &.badge-warning {
+    background: rgba($color-warning, 0.1);
+    color: $color-warning;
+  }
+}
+
+// ============================================================================
+// 18) PRODUCT CARD
+// ============================================================================
+
+.product-card {
+  @extend .card;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-image {
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%; // 1:1 aspect ratio
+  background: $color-gray-100;
+  overflow: hidden;
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .wishlist-btn {
+    position: absolute;
+    top: $spacing-md;
+    right: $spacing-md;
+    @include flex-center;
+    width: 40px;
+    height: 40px;
+    background: $color-white;
+    border: none;
+    border-radius: $radius-full;
+    cursor: pointer;
+    box-shadow: $shadow-md;
+    @include smooth-transition;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    svg {
+      width: 20px;
+      height: 20px;
+      color: $color-accent;
+    }
+  }
+}
+
+.product-info {
+  flex: 1;
+  padding: $spacing-lg;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.product-name {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $color-gray-900;
+  @include line-clamp(2);
+  margin: 0;
+}
+
+.product-price {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
+  color: $color-primary;
+  margin: 0;
+}
+
+.product-actions {
+  display: flex;
+  gap: $spacing-sm;
+  margin-top: auto;
+
+  .btn {
+    flex: 1;
+  }
+}
+
+// ============================================================================
+// 19) GRID LAYOUTS
+// ============================================================================
+
+.grid {
+  display: grid;
+  gap: $spacing-lg;
+
+  // 2-column grid (mobile)
+  &.grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+
+    @media (min-width: $breakpoint-lg) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (min-width: $breakpoint-xl) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  // 1-column grid
+  &.grid-1 {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ============================================================================
+// 20) BOTTOM NAVIGATION
+// ============================================================================
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: $z-fixed;
+  background: $color-white;
+  border-top: 1px solid $color-gray-200;
+  max-width: $max-width-app;
+  margin: 0 auto;
+  width: 100%;
+  padding: $spacing-sm $spacing-lg;
+  height: $bottom-nav-height;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-sm;
+  color: $color-gray-400;
+  text-decoration: none;
+  @include smooth-transition;
+  min-width: 44px;
+  min-height: 44px;
+  justify-content: center;
+
+  &.active {
+    color: $color-primary;
+
+    svg {
+      color: $color-primary;
+    }
+  }
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  span {
+    font-size: $font-size-xs;
+    font-weight: $font-weight-medium;
+  }
+
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+// ============================================================================
+// 21) UTILITIES
+// ============================================================================
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.mt-1 { margin-top: $spacing-sm; }
+.mt-2 { margin-top: $spacing-md; }
+.mt-3 { margin-top: $spacing-lg; }
+.mt-4 { margin-top: $spacing-xl; }
+
+.mb-1 { margin-bottom: $spacing-sm; }
+.mb-2 { margin-bottom: $spacing-md; }
+.mb-3 { margin-bottom: $spacing-lg; }
+.mb-4 { margin-bottom: $spacing-xl; }
+
+.px-1 { padding-left: $spacing-sm; padding-right: $spacing-sm; }
+.px-2 { padding-left: $spacing-md; padding-right: $spacing-md; }
+.px-3 { padding-left: $spacing-lg; padding-right: $spacing-lg; }
+
+.py-1 { padding-top: $spacing-sm; padding-bottom: $spacing-sm; }
+.py-2 { padding-top: $spacing-md; padding-bottom: $spacing-md; }
+.py-3 { padding-top: $spacing-lg; padding-bottom: $spacing-lg; }
+
+.hidden {
+  display: none !important;
+}
+
+.visible {
+  display: block !important;
+}
+
+.opacity-50 {
+  opacity: 0.5;
+}
+
+.opacity-75 {
+  opacity: 0.75;
+}
+
+// ============================================================================
+// 22) PAGE IMPORTS
+// ============================================================================
+
+@import 'pages/cart';
+@import 'pages/page-detail';

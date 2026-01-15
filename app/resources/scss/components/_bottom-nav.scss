@@ -1,0 +1,108 @@
+/**
+ * COMPONENTS — BOTTOM NAVIGATION
+ * ===============================
+ * Fixed bottom navigation bar
+ */
+
+@use '../abstracts/mixins' as *;
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--ane-z-fixed);
+  max-width: var(--ane-max-width-mobile);
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 var(--ane-spacing-lg) var(--ane-spacing-lg);
+  pointer-events: none;
+
+  &__container {
+    background: var(--ane-color-light);
+    border-radius: var(--ane-radius-3xl);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: var(--ane-spacing-md) var(--ane-spacing-sm);
+    position: relative;
+    pointer-events: auto;
+  }
+}
+
+.nav-item {
+  @include flex-center;
+  @include touch-target;
+  padding: var(--ane-spacing-sm);
+  color: var(--ane-color-gray-400);
+  @include smooth-transition;
+  position: relative;
+  flex: 1;
+
+  svg {
+    width: 24px;
+    height: 24px;
+    @include smooth-transition;
+  }
+
+  &__badge {
+    position: absolute;
+    top: 0;
+    right: 4px;
+    @include flex-center;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    background: var(--ane-color-primary);
+    color: var(--ane-color-light);
+    font-size: 10px;
+    font-weight: var(--ane-font-weight-bold);
+    border-radius: var(--ane-radius-full);
+  }
+
+  &:active {
+    transform: scale(0.9);
+  }
+
+  &.active {
+    color: var(--ane-color-primary);
+
+    svg {
+      color: var(--ane-color-primary);
+    }
+  }
+
+  // Center Home Button (Big Orange Circle)
+  &--center {
+    @include flex-center;
+    width: 56px;
+    height: 56px;
+    background: var(--ane-color-primary);
+    border-radius: var(--ane-radius-full);
+    color: var(--ane-color-light);
+    box-shadow: 0 4px 12px rgba(var(--ane-color-primary-rgb, 241, 123, 13), 0.3);
+    margin: 0 var(--ane-spacing-xs);
+    flex: 0 0 auto;
+
+    svg {
+      width: 28px;
+      height: 28px;
+      color: var(--ane-color-light);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+
+    // Override active state for center button - always orange
+    &.active {
+      background: var(--ane-color-primary);
+      color: var(--ane-color-light);
+
+      svg {
+        color: var(--ane-color-light);
+      }
+    }
+  }
+}
