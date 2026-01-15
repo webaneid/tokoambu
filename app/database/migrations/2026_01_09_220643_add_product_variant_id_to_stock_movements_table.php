@@ -15,8 +15,8 @@ return new class extends Migration
             $table->foreignId('product_variant_id')->nullable()->after('product_id')
                 ->constrained('product_variants')->cascadeOnDelete();
 
-            $table->index(['product_id', 'product_variant_id']);
-            $table->index(['reference_type', 'reference_id', 'product_variant_id']);
+            $table->index(['product_id', 'product_variant_id'], 'sm_product_variant_idx');
+            $table->index(['reference_type', 'reference_id', 'product_variant_id'], 'sm_ref_refid_variant_idx');
         });
     }
 
@@ -27,8 +27,8 @@ return new class extends Migration
     {
         Schema::table('stock_movements', function (Blueprint $table) {
             $table->dropForeign(['product_variant_id']);
-            $table->dropIndex(['product_id', 'product_variant_id']);
-            $table->dropIndex(['reference_type', 'reference_id', 'product_variant_id']);
+            $table->dropIndex('sm_product_variant_idx');
+            $table->dropIndex('sm_ref_refid_variant_idx');
             $table->dropColumn('product_variant_id');
         });
     }
