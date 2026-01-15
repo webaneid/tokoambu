@@ -27,9 +27,13 @@ use App\Http\Controllers\IPaymuWebhookController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
-// Root route - redirect to dashboard or login
+// Root route - storefront for main domain, admin for admin subdomain
 Route::get('/', function () {
-    return auth()->check() ? redirect('/dashboard') : redirect('/login');
+    if (request()->getHost() === 'admin.tokoambu.com') {
+        return auth()->check() ? redirect('/dashboard') : redirect('/login');
+    }
+
+    return redirect()->route('shop.index');
 });
 
 Route::get('/public/invoices/{order}', [InvoiceController::class, 'publicShow'])
