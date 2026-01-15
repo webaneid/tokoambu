@@ -12,6 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('inventory_balances', function (Blueprint $table) {
+            // Drop foreign keys first so we can remove the old unique index safely.
+            $table->dropForeign(['product_id']);
+            $table->dropForeign(['location_id']);
+
             // Drop existing unique constraint
             $table->dropUnique(['product_id', 'location_id']);
 
@@ -21,6 +25,10 @@ return new class extends Migration
 
             // Add new composite unique constraint including variant
             $table->unique(['product_id', 'product_variant_id', 'location_id'], 'unique_product_variant_location');
+
+            // Restore foreign keys
+            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('location_id')->references('id')->on('locations');
         });
     }
 
