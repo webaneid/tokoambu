@@ -13,7 +13,11 @@ return new class extends Migration
     {
         // Add reserved_qty to inventory_balances
         Schema::table('inventory_balances', function (Blueprint $table) {
-            $table->decimal('reserved_qty', 10, 2)->default(0)->after('qty');
+            if (Schema::hasColumn('inventory_balances', 'qty')) {
+                $table->decimal('reserved_qty', 10, 2)->default(0)->after('qty');
+            } else {
+                $table->decimal('reserved_qty', 10, 2)->default(0);
+            }
         });
 
         // Add preorder payment fields to orders
