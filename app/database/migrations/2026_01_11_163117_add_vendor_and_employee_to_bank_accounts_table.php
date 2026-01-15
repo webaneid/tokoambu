@@ -11,10 +11,29 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('bank_accounts', function (Blueprint $table) {
-            $table->foreignId('vendor_id')->nullable()->after('supplier_id')->constrained('vendors')->nullOnDelete();
-            $table->foreignId('employee_id')->nullable()->after('vendor_id')->constrained('employees')->nullOnDelete();
-        });
+        if (!Schema::hasColumn('bank_accounts', 'vendor_id')) {
+            Schema::table('bank_accounts', function (Blueprint $table) {
+                $table->unsignedBigInteger('vendor_id')->nullable()->after('supplier_id');
+            });
+        }
+
+        if (!Schema::hasColumn('bank_accounts', 'employee_id')) {
+            Schema::table('bank_accounts', function (Blueprint $table) {
+                $table->unsignedBigInteger('employee_id')->nullable()->after('vendor_id');
+            });
+        }
+
+        if (Schema::hasTable('vendors')) {
+            Schema::table('bank_accounts', function (Blueprint $table) {
+                $table->foreign('vendor_id')->references('id')->on('vendors')->nullOnDelete();
+            });
+        }
+
+        if (Schema::hasTable('employees')) {
+            Schema::table('bank_accounts', function (Blueprint $table) {
+                $table->foreign('employee_id')->references('id')->on('employees')->nullOnDelete();
+            });
+        }
     }
 
     /**
@@ -23,9 +42,25 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('bank_accounts', function (Blueprint $table) {
-            $table->dropForeign(['vendor_id']);
-            $table->dropForeign(['employee_id']);
-            $table->dropColumn(['vendor_id', 'employee_id']);
+            if (Schema::hasColumn('bank_accounts', 'vendor_id')) {
+                $table->dropForeign(['vendor_id']);
+            }
+            if (Schema::hasColumn('bank_accounts', 'employee_id')) {
+                $table->dropForeign(['employee_id']);
+            }
+        });
+
+        Schema::table('bank_accounts', function (Blueprint $table) {
+            $columns = [];
+            if (Schema::hasColumn('bank_accounts', 'vendor_id')) {
+                $columns[] = 'vendor_id';
+            }
+            if (Schema::hasColumn('bank_accounts', 'employee_id')) {
+                $columns[] = 'employee_id';
+            }
+            if ($columns) {
+                $table->dropColumn($columns);
+            }
         });
     }
 };
