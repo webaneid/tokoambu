@@ -25,6 +25,14 @@
       this.aiRoutes = options.aiRoutes || null;
       this.csrfToken = options.csrfToken || '';
 
+      // Debug log
+      console.log('ProductGallery initialized:', {
+        listUrl: this.listUrl,
+        uploadUrl: this.uploadUrl,
+        productId: this.productId,
+        aiEnabled: this.aiEnabled
+      });
+
       this.featuredMedia = null;
       this.galleryMedia = [];
 
