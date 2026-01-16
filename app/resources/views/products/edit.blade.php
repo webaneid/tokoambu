@@ -100,6 +100,18 @@
                             @enderror
                         </div>
 
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Visibilitas Storefront</label>
+                            <div class="flex items-center gap-3">
+                                <input type="checkbox" id="is_hidden" name="is_hidden" value="1" class="h-4 w-4 text-primary border-gray-300 rounded" @checked(old('is_hidden', $product->is_hidden))>
+                                <label for="is_hidden" class="text-sm text-gray-700">Jangan tampilkan di Storefront</label>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1">Produk hanya bisa dipesan melalui admin/backend</p>
+                            @error('is_hidden')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+
                         <div class="mb-6">
                             <label for="description" class="block text-sm font-medium text-gray-700 mb-2">Deskripsi</label>
                             <div id="quill-editor" class="bg-white border border-gray-300 rounded-lg" style="min-height: 200px;"></div>

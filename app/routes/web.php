@@ -252,6 +252,7 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware('permission:view_ledger')->group(function () {
         Route::get('/ledger', [LedgerController::class, 'index'])->name('ledger.index');
         Route::get('/ledger/report', [LedgerController::class, 'report'])->name('ledger.report');
+        Route::get('/ledger/report/export', [LedgerController::class, 'exportExcel'])->name('ledger.report.export');
     });
     Route::middleware('permission:create_ledger_entry')->group(function () {
         Route::get('/ledger/create', [LedgerController::class, 'create'])->name('ledger.create');

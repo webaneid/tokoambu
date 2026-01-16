@@ -117,8 +117,8 @@ class PreorderController extends Controller
         $storePhone = Setting::get('shop_whatsapp', '');
         $storeWebsite = Setting::get('shop_website', '');
 
-        // Generate invoice URL (signed URL for public access)
-        $invoiceUrl = route('invoices.public', ['order' => $order->id]);
+        // Generate invoice URL (signed URL for public access, always uses storefront domain)
+        $invoiceUrl = \App\Http\Controllers\InvoiceController::generatePublicUrl($order);
 
         $variables = [
             'customer_name' => $order->customer->name,

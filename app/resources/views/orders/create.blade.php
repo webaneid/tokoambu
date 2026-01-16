@@ -156,6 +156,13 @@
                             <input type="text" name="shipping_etd" id="shipping_etd" class="w-full px-3 py-2 border border-gray-300 rounded-lg bg-gray-50" readonly>
                         </div>
                     </div>
+                    <!-- Coupon -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Kupon (Opsional)</label>
+                        <input type="text" name="coupon_code" value="{{ old('coupon_code') }}" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Masukkan kode kupon">
+                        <p class="text-xs text-gray-500 mt-1">Diskon kupon dihitung saat order disimpan.</p>
+                        @error('coupon_code') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                    </div>
                     <!-- Total -->
                     <div class="border-t pt-6">
                         <div class="text-right">

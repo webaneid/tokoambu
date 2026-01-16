@@ -33,7 +33,7 @@
                                     $waNumber = '62' . $waNumber;
                                 }
                             }
-                            $publicInvoiceUrl = \Illuminate\Support\Facades\URL::signedRoute('invoices.public', ['order' => $order->id]);
+                            $publicInvoiceUrl = \App\Http\Controllers\InvoiceController::generatePublicUrl($order);
                             $itemsText = $order->items
                                 ->map(function ($item) {
                                     $name = $item->product->name ?? 'Produk';
@@ -208,7 +208,7 @@
                                             $waNumber = '62' . $waNumber;
                                         }
                                     }
-                                    $publicInvoiceUrl = \Illuminate\Support\Facades\URL::signedRoute('invoices.public', ['order' => $order->id]);
+                                    $publicInvoiceUrl = \App\Http\Controllers\InvoiceController::generatePublicUrl($order);
                                     $itemsText = $order->items
                                         ->map(function ($item) {
                                             $name = $item->product->name ?? 'Produk';

@@ -250,7 +250,21 @@
 
                 <div class="bg-white rounded-lg shadow p-6">
                     <h3 class="text-lg font-semibold text-gray-900 mb-4">Total</h3>
-                    <p class="text-3xl font-bold text-primary">Rp {{ number_format($order->total_amount, 0, ',', '.') }}</p>
+                    @php
+                        $itemsSubtotal = $order->items->sum(function ($item) {
+                            return $item->subtotal ?? ($item->quantity * $item->unit_price);
+                        });
+                        $shippingCost = $order->shipping_cost ?? 0;
+                        $couponDiscount = $order->coupon_discount_amount ?? 0;
+                    @endphp
+                    <div class="space-y-1 text-sm text-gray-600">
+                        <div>Subtotal Item: <span class="text-gray-900">Rp {{ number_format($itemsSubtotal, 0, ',', '.') }}</span></div>
+                        <div>Ongkos Kirim: <span class="text-gray-900">Rp {{ number_format($shippingCost, 0, ',', '.') }}</span></div>
+                        @if($couponDiscount > 0)
+                            <div>Diskon Kupon{{ $order->coupon_code ? " ({$order->coupon_code})" : '' }}: <span class="text-red-600">-Rp {{ number_format($couponDiscount, 0, ',', '.') }}</span></div>
+                        @endif
+                    </div>
+                    <p class="text-3xl font-bold text-primary mt-3">Rp {{ number_format($order->total_amount, 0, ',', '.') }}</p>
                 </div>
             </div>
 

@@ -100,6 +100,12 @@
                             <input type="number" name="shipping_cost" id="shipping_cost" min="0" step="0.01" value="{{ $order->shipping_cost ?? 0 }}" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
                         </div>
                     </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Kupon (Opsional)</label>
+                        <input type="text" name="coupon_code" value="{{ old('coupon_code', $order->coupon_code) }}" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Masukkan kode kupon">
+                        <p class="text-xs text-gray-500 mt-1">Diskon kupon dihitung ulang saat menyimpan perubahan.</p>
+                        @error('coupon_code') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                    </div>
 
                     <!-- Total -->
                     <div class="border-t pt-6">
@@ -112,6 +118,9 @@
                             @endphp
                             <p class="text-sm text-gray-500">Subtotal Item: <span class="text-gray-700">Rp {{ number_format($itemsSubtotal, 0, ',', '.') }}</span></p>
                             <p class="text-sm text-gray-500">Ongkos Kirim: <span class="text-gray-700">Rp {{ number_format($shippingCost, 0, ',', '.') }}</span></p>
+                            @if(($order->coupon_discount_amount ?? 0) > 0)
+                                <p class="text-sm text-gray-500">Diskon Kupon{{ $order->coupon_code ? " ({$order->coupon_code})" : '' }}: <span class="text-red-600">-Rp {{ number_format($order->coupon_discount_amount, 0, ',', '.') }}</span></p>
+                            @endif
                             <p class="text-gray-600 mb-2">Total:</p>
                             <p class="text-3xl font-bold text-primary">Rp <span id="total-amount">{{ number_format($order->total_amount, 0, ',', '.') }}</span></p>
                         </div>

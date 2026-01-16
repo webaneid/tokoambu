@@ -191,6 +191,15 @@
                                 <p class="text-xs text-gray-500 mt-1">Pembeli bisa order meski stok habis</p>
                             </div>
                         </div>
+
+                        <div class="flex items-start gap-3">
+                            <input type="checkbox" id="is_hidden" name="is_hidden" value="1" x-model="formData.is_hidden"
+                                   class="h-4 w-4 text-primary border-gray-300 rounded mt-1">
+                            <div>
+                                <label for="is_hidden" class="text-sm font-medium text-gray-700 cursor-pointer">Jangan tampilkan di Storefront</label>
+                                <p class="text-xs text-gray-500 mt-1">Produk hanya bisa dipesan melalui admin/backend</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -199,7 +208,7 @@
                     <!-- Featured Image -->
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-3">
-                            Gambar Utama <span class="text-red-500">*</span>
+                            Gambar Utama <span class="text-gray-400 text-xs">(Opsional)</span>
                         </label>
                         <div class="flex flex-col md:flex-row items-start gap-6">
                             <div id="featuredImagePreview" class="w-full md:w-48 h-48 rounded-lg border-2 border-dashed border-gray-300 flex items-center justify-center bg-gray-50 overflow-hidden">
@@ -330,6 +339,7 @@
                     weight_grams: '{{ old('weight_grams', 0) }}',
                     has_variants: {{ old('has_variants') ? 'true' : 'false' }},
                     allow_preorder: {{ old('allow_preorder') ? 'true' : 'false' }},
+                    is_hidden: {{ old('is_hidden') ? 'true' : 'false' }},
                     description: '{{ old('description') }}'
                 },
 
@@ -403,10 +413,7 @@
                             }
                             break;
                         case 2: // Media
-                            if (!document.getElementById('featuredMediaId').value) {
-                                alert('Mohon pilih Gambar Utama produk');
-                                return false;
-                            }
+                            // Featured image is now optional (nullable)
                             break;
                     }
                     return true;

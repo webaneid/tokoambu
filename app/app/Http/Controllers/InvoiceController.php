@@ -11,6 +11,43 @@ use Illuminate\Support\Facades\URL;
 
 class InvoiceController extends Controller
 {
+    /**
+     * Generate public invoice URL (always uses storefront domain)
+     */
+    public static function generatePublicUrl(Order $order): string
+    {
+        // Save current root URL
+        $originalUrl = config('app.url');
+
+        // Get storefront URL from config or construct from current URL
+        $storefrontDomain = config('app.storefront_url');
+
+        // If not configured, derive from current URL by removing admin. subdomain
+        if (!$storefrontDomain) {
+            $currentUrl = parse_url($originalUrl);
+            $host = $currentUrl['host'] ?? 'localhost';
+            $scheme = $currentUrl['scheme'] ?? 'http';
+            $port = isset($currentUrl['port']) ? ':' . $currentUrl['port'] : '';
+
+            // Remove admin. subdomain if present
+            if (str_starts_with($host, 'admin.')) {
+                $host = substr($host, 6); // Remove 'admin.'
+            }
+
+            $storefrontDomain = $scheme . '://' . $host . $port;
+        }
+
+        // Temporarily override root URL to storefront domain
+        URL::forceRootUrl($storefrontDomain);
+
+        $url = URL::signedRoute('invoices.public', ['order' => $order->id]);
+
+        // Restore original URL config
+        URL::forceRootUrl($originalUrl);
+
+        return $url;
+    }
+
     protected function storeInfo(): array
     {
         return [
@@ -37,7 +74,7 @@ class InvoiceController extends Controller
     {
         $order->load('customer', 'items.product', 'payments', 'shipment');
         $store = $this->storeInfo();
-        $publicUrl = URL::signedRoute('invoices.public', ['order' => $order->id]);
+        $publicUrl = self::generatePublicUrl($order);
         $publicDownloadUrl = URL::signedRoute('invoices.public_download', ['order' => $order->id]);
         return view('invoices.show', compact('order', 'store', 'publicUrl', 'publicDownloadUrl'));
     }

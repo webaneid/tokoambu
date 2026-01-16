@@ -42,6 +42,11 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
+        // Redirect based on host
+        if ($request->getHost() === 'admin.tokoambu.com') {
+            return redirect()->route('login');
+        }
+
         return redirect('/');
     }
 }

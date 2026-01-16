@@ -115,7 +115,7 @@ class ProductController extends Controller
             'description' => 'nullable|string',
             'category_id' => 'required|exists:product_categories,id',
             'supplier_id' => 'nullable|exists:suppliers,id',
-            'featured_media_id' => 'required|exists:media,id',
+            'featured_media_id' => 'nullable|exists:media,id',
             'gallery_media_ids' => 'nullable|string',
             'allow_preorder' => 'nullable|boolean',
             'preorder_eta_date' => 'nullable|date',
@@ -139,6 +139,7 @@ class ProductController extends Controller
         $validated = $request->validate($rules);
 
         $validated['allow_preorder'] = $request->boolean('allow_preorder');
+        $validated['is_hidden'] = $request->boolean('is_hidden');
         $validated['has_variants'] = $hasVariants;
 
         // Parse custom field values from JSON
@@ -329,6 +330,7 @@ class ProductController extends Controller
         $validated = $request->validate($rules);
 
         $validated['allow_preorder'] = $request->boolean('allow_preorder');
+        $validated['is_hidden'] = $request->boolean('is_hidden');
         $validated['has_variants'] = $hasVariants;
 
         // Parse custom field values from JSON

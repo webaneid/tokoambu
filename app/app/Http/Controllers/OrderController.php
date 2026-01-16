@@ -9,8 +9,10 @@ use App\Models\Order;
 use App\Models\Product;
 use App\Models\ProductVariant;
 use App\Models\Promotion;
+use App\Models\PromotionUsage;
 use App\Models\Setting;
 use App\Models\StockMovement;
+use App\Services\CouponService;
 use App\Services\FlashSaleService;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
@@ -148,13 +150,14 @@ class OrderController extends Controller
         return view('orders.create', compact('customers', 'products', 'origin', 'activeCouriers', 'couriers', 'flashSalePromos'));
     }
 
-    public function store(Request $request, FlashSaleService $flashSaleService)
+    public function store(Request $request, FlashSaleService $flashSaleService, CouponService $couponService)
     {
         $validated = $request->validate([
             'customer_id' => 'required|exists:customers,id',
             'type' => 'required|in:order,preorder',
             'status' => 'nullable|in:draft,waiting_payment,dp_paid,paid,packed,shipped,done,cancelled',
             'notes' => 'nullable|string',
+            'coupon_code' => 'nullable|string|max:50',
             'items' => 'required|array|min:1',
             'items.*.product_id' => 'required|exists:products,id',
             'items.*.product_variant_id' => 'nullable|exists:product_variants,id',
@@ -173,24 +176,6 @@ class OrderController extends Controller
             'shipping_address' => 'nullable|string',
         ]);
 
-        $order = Order::create([
-            'order_number' => 'ORD-'.date('YmdHis'),
-            'customer_id' => $validated['customer_id'],
-            'type' => $validated['type'],
-            'status' => $validated['status'] ?? 'draft',
-            'notes' => $validated['notes'] ?? null,
-            'total_amount' => 0,
-            'shipping_cost' => $validated['shipping_cost'] ?? 0,
-            'shipping_courier' => $validated['shipping_courier'] ?? null,
-            'shipping_service' => $validated['shipping_service'] ?? null,
-            'shipping_etd' => $validated['shipping_etd'] ?? null,
-            'shipping_province_id' => $validated['shipping_province_id'] ?? null,
-            'shipping_city_id' => $validated['shipping_city_id'] ?? null,
-            'shipping_district_id' => $validated['shipping_district_id'] ?? null,
-            'shipping_postal_code' => $validated['shipping_postal_code'] ?? null,
-            'shipping_address' => $validated['shipping_address'] ?? null,
-        ]);
-
         $productIds = collect($validated['items'])->pluck('product_id')->unique()->values();
         $products = Product::whereIn('id', $productIds)
             ->with('inventoryBalances')
@@ -207,9 +192,21 @@ class OrderController extends Controller
             : collect();
 
         $items = $flashSaleService->applyToItems($validated['items'], $products, $variants);
+        $flashSalePromotionIds = collect($items)
+            ->pluck('flash_sale_promotion_id')
+            ->filter()
+            ->unique()
+            ->map(fn ($id) => (int) $id)
+            ->values()
+            ->all();
 
         $totalAmount = 0;
         $hasPreorder = false;
+        $preparedItems = [];
+        $couponCode = strtoupper(trim((string) ($validated['coupon_code'] ?? '')));
+        $couponDiscount = 0.0;
+        $couponPromotionId = null;
+        $customer = Customer::findOrFail($validated['customer_id']);
         foreach ($items as $item) {
             $product = $products->get($item['product_id']);
 
@@ -251,6 +248,58 @@ class OrderController extends Controller
                 }
             }
 
+            $preparedItems[] = array_merge($item, [
+                'is_preorder' => $isPreorder,
+                'preorder_eta_date' => $etaDate,
+            ]);
+            $totalAmount += $item['quantity'] * $item['unit_price'];
+        }
+
+        $shippingCost = (float) ($validated['shipping_cost'] ?? 0);
+        if ($couponCode !== '') {
+            $couponResult = $couponService->applyCoupon(
+                $couponCode,
+                collect($items),
+                $totalAmount,
+                $customer,
+                $flashSalePromotionIds,
+                $shippingCost
+            );
+
+            if (! $couponResult['valid']) {
+                return redirect()
+                    ->back()
+                    ->withInput()
+                    ->withErrors(['coupon_code' => $couponResult['message'] ?? 'Kupon tidak valid.']);
+            }
+
+            $couponDiscount = (float) ($couponResult['discount'] ?? 0);
+            $couponPromotionId = $couponResult['promotion']?->id;
+
+            if ($couponDiscount > 0 && $this->shouldApplyDiscountToItems($couponResult)) {
+                $preparedItems = $this->applyCouponDiscountToItems($preparedItems, $couponDiscount);
+            }
+        }
+
+        $totalAmount = 0;
+        $order = Order::create([
+            'order_number' => 'ORD-'.date('YmdHis'),
+            'customer_id' => $validated['customer_id'],
+            'type' => $validated['type'],
+            'status' => $validated['status'] ?? 'draft',
+            'notes' => $validated['notes'] ?? null,
+            'total_amount' => 0,
+            'shipping_cost' => $validated['shipping_cost'] ?? 0,
+            'shipping_courier' => $validated['shipping_courier'] ?? null,
+            'shipping_service' => $validated['shipping_service'] ?? null,
+            'shipping_etd' => $validated['shipping_etd'] ?? null,
+            'shipping_province_id' => $validated['shipping_province_id'] ?? null,
+            'shipping_city_id' => $validated['shipping_city_id'] ?? null,
+            'shipping_district_id' => $validated['shipping_district_id'] ?? null,
+            'shipping_postal_code' => $validated['shipping_postal_code'] ?? null,
+            'shipping_address' => $validated['shipping_address'] ?? null,
+        ]);
+        foreach ($preparedItems as $item) {
             $subtotal = $item['quantity'] * $item['unit_price'];
             $order->items()->create([
                 'product_id' => $item['product_id'],
@@ -259,17 +308,20 @@ class OrderController extends Controller
                 'price' => $item['original_price'] ?? null,
                 'unit_price' => $item['unit_price'],
                 'subtotal' => $subtotal,
-                'is_preorder' => $isPreorder,
-                'preorder_eta_date' => $etaDate,
+                'is_preorder' => $item['is_preorder'] ?? false,
+                'preorder_eta_date' => $item['preorder_eta_date'] ?? null,
                 'preorder_allocated_qty' => 0,
             ]);
             $totalAmount += $subtotal;
         }
 
-        $finalAmount = $totalAmount + ($validated['shipping_cost'] ?? 0);
+        $finalAmount = max(0, $totalAmount + $shippingCost - $couponDiscount);
         $updateData = [
             'total_amount' => $finalAmount,
             'type' => $hasPreorder ? 'preorder' : 'order',
+            'coupon_code' => $couponCode !== '' ? $couponCode : null,
+            'coupon_promotion_id' => $couponPromotionId,
+            'coupon_discount_amount' => $couponDiscount,
         ];
 
         // If preorder, calculate DP and set deadlines
@@ -291,6 +343,18 @@ class OrderController extends Controller
         }
 
         $order->update($updateData);
+
+        PromotionUsage::where('order_id', $order->id)->delete();
+        if ($couponPromotionId && $couponDiscount > 0) {
+            PromotionUsage::create([
+                'promotion_id' => $couponPromotionId,
+                'order_id' => $order->id,
+                'user_id' => $customer->id,
+                'coupon_code' => $couponCode !== '' ? $couponCode : null,
+                'discount_amount' => $couponDiscount,
+                'applied_at' => now(),
+            ]);
+        }
 
         return redirect()->route('orders.show', $order)->with('success', 'Order berhasil dibuat');
     }
@@ -564,7 +628,7 @@ class OrderController extends Controller
         return redirect()->route('orders.packing')->with('success', "$successCount order berhasil ditandai sebagai packed");
     }
 
-    public function update(Request $request, Order $order, FlashSaleService $flashSaleService)
+    public function update(Request $request, Order $order, FlashSaleService $flashSaleService, CouponService $couponService)
     {
         if (in_array($order->status, ['shipped', 'done'], true)) {
             return redirect()
@@ -623,6 +687,7 @@ class OrderController extends Controller
 
         $validated = $request->validate([
             'notes' => 'nullable|string',
+            'coupon_code' => 'nullable|string|max:50',
             'items' => 'required|array|min:1',
             'items.*.product_id' => 'required|exists:products,id',
             'items.*.product_variant_id' => 'nullable|exists:product_variants,id',
@@ -649,11 +714,20 @@ class OrderController extends Controller
             : collect();
 
         $items = $flashSaleService->applyToItems($validated['items'], $products, $variants);
+        $flashSalePromotionIds = collect($items)
+            ->pluck('flash_sale_promotion_id')
+            ->filter()
+            ->unique()
+            ->map(fn ($id) => (int) $id)
+            ->values()
+            ->all();
 
         $totalAmount = 0;
         $hasPreorder = false;
-
-        $order->items()->delete();
+        $preparedItems = [];
+        $couponCode = strtoupper(trim((string) ($validated['coupon_code'] ?? '')));
+        $couponDiscount = 0.0;
+        $couponPromotionId = null;
 
         foreach ($items as $item) {
             $product = $products->get($item['product_id']);
@@ -676,6 +750,42 @@ class OrderController extends Controller
                 }
             }
 
+            $preparedItems[] = array_merge($item, [
+                'is_preorder' => $isPreorder,
+                'preorder_eta_date' => $etaDate,
+            ]);
+            $totalAmount += $item['quantity'] * $item['unit_price'];
+        }
+
+        $shippingCost = (float) ($validated['shipping_cost'] ?? $order->shipping_cost ?? 0);
+        if ($couponCode !== '') {
+            $couponResult = $couponService->applyCoupon(
+                $couponCode,
+                collect($items),
+                $totalAmount,
+                $order->customer,
+                $flashSalePromotionIds,
+                $shippingCost
+            );
+
+            if (! $couponResult['valid']) {
+                return redirect()
+                    ->back()
+                    ->withInput()
+                    ->withErrors(['coupon_code' => $couponResult['message'] ?? 'Kupon tidak valid.']);
+            }
+
+            $couponDiscount = (float) ($couponResult['discount'] ?? 0);
+            $couponPromotionId = $couponResult['promotion']?->id;
+
+            if ($couponDiscount > 0 && $this->shouldApplyDiscountToItems($couponResult)) {
+                $preparedItems = $this->applyCouponDiscountToItems($preparedItems, $couponDiscount);
+            }
+        }
+
+        $totalAmount = 0;
+        $order->items()->delete();
+        foreach ($preparedItems as $item) {
             $subtotal = $item['quantity'] * $item['unit_price'];
             $order->items()->create([
                 'product_id' => $item['product_id'],
@@ -684,28 +794,99 @@ class OrderController extends Controller
                 'price' => $item['original_price'] ?? null,
                 'unit_price' => $item['unit_price'],
                 'subtotal' => $subtotal,
-                'is_preorder' => $isPreorder,
-                'preorder_eta_date' => $etaDate,
+                'is_preorder' => $item['is_preorder'] ?? false,
+                'preorder_eta_date' => $item['preorder_eta_date'] ?? null,
                 'preorder_allocated_qty' => 0,
             ]);
             $totalAmount += $subtotal;
         }
 
-        $shippingCost = $validated['shipping_cost'] ?? $order->shipping_cost ?? 0;
-
         $order->update([
             'notes' => $validated['notes'] ?? null,
             'shipping_cost' => $shippingCost,
-            'total_amount' => $totalAmount + $shippingCost,
+            'total_amount' => max(0, $totalAmount + $shippingCost - $couponDiscount),
             'type' => $hasPreorder ? 'preorder' : 'order',
             'status' => 'waiting_payment',
+            'coupon_code' => $couponCode !== '' ? $couponCode : null,
+            'coupon_promotion_id' => $couponPromotionId,
+            'coupon_discount_amount' => $couponDiscount,
         ]);
+
+        PromotionUsage::where('order_id', $order->id)->delete();
+        if ($couponPromotionId && $couponDiscount > 0) {
+            PromotionUsage::create([
+                'promotion_id' => $couponPromotionId,
+                'order_id' => $order->id,
+                'user_id' => $order->customer?->id,
+                'coupon_code' => $couponCode !== '' ? $couponCode : null,
+                'discount_amount' => $couponDiscount,
+                'applied_at' => now(),
+            ]);
+        }
 
         if ($order->shipment) {
             $order->shipment()->delete();
         }
 
         return redirect()->route('orders.show', $order)->with('success', 'Order berhasil diperbarui');
+    }
+
+    private function shouldApplyDiscountToItems(?array $couponResult): bool
+    {
+        if (! $couponResult || empty($couponResult['promotion'])) {
+            return false;
+        }
+
+        $benefit = $couponResult['promotion']->benefits->first();
+        if (! $benefit) {
+            return false;
+        }
+
+        if ($benefit->benefit_type === 'free_shipping' || $benefit->apply_scope === 'shipping') {
+            return false;
+        }
+
+        return true;
+    }
+
+    private function applyCouponDiscountToItems(array $items, float $discount): array
+    {
+        if ($discount <= 0) {
+            return $items;
+        }
+
+        $total = collect($items)->sum(function ($item) {
+            return ($item['unit_price'] ?? 0) * ($item['quantity'] ?? 0);
+        });
+
+        if ($total <= 0) {
+            return $items;
+        }
+
+        $remaining = $discount;
+        $lastIndex = count($items) - 1;
+
+        foreach ($items as $index => $item) {
+            $lineTotal = ($item['unit_price'] ?? 0) * ($item['quantity'] ?? 0);
+            $lineDiscount = $index === $lastIndex
+                ? $remaining
+                : round($discount * ($lineTotal / $total), 2);
+
+            $remaining -= $lineDiscount;
+
+            $qty = max(1, (int) ($item['quantity'] ?? 1));
+            $unitDiscount = round($lineDiscount / $qty, 2);
+            $basePrice = (float) ($item['unit_price'] ?? 0);
+
+            if (empty($item['original_price'])) {
+                $item['original_price'] = $basePrice;
+            }
+
+            $item['unit_price'] = max(0, $basePrice - $unitDiscount);
+            $items[$index] = $item;
+        }
+
+        return $items;
     }
 
     /**

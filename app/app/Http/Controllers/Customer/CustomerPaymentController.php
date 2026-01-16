@@ -392,6 +392,6 @@ class CustomerPaymentController extends Controller
 
     private function publicInvoiceUrl(Order $order): string
     {
-        return URL::signedRoute('invoices.public', ['order' => $order->id]);
+        return \App\Http\Controllers\InvoiceController::generatePublicUrl($order);
     }
 }

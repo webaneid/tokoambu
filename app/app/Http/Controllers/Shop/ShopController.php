@@ -37,7 +37,8 @@ class ShopController extends Controller
                   ->where('start_date', '<=', now())
                   ->where('end_date', '>=', now());
             }
-        ])->where('is_active', true);
+        ])->where('is_active', true)
+          ->where('is_hidden', false);
 
         // Search by name, SKU, or description
         if ($request->filled('q')) {
@@ -351,6 +352,7 @@ class ShopController extends Controller
                   ->where('end_date', '>=', now());
             }
         ])->where('is_active', true)
+          ->where('is_hidden', false)
           ->orderBy('created_at', 'desc')
           ->paginate(12);
 
@@ -463,6 +465,7 @@ class ShopController extends Controller
                       ->orWhere('id', $slug);
             })
             ->where('is_active', true)
+            ->where('is_hidden', false)
             ->firstOrFail();
 
         // Calculate reserved quantity for this product
@@ -512,6 +515,7 @@ class ShopController extends Controller
             ->where('category_id', $product->category_id)
             ->where('id', '!=', $product->id)
             ->where('is_active', true)
+            ->where('is_hidden', false)
             ->take(4)
             ->get();
 
@@ -542,6 +546,7 @@ class ShopController extends Controller
                   ->where('end_date', '>=', now());
             }
         ])->where('is_active', true)
+          ->where('is_hidden', false)
           ->orderBy('created_at', 'desc')
           ->get();
 
@@ -776,7 +781,8 @@ class ShopController extends Controller
                     ->where('start_date', '<=', now())
                     ->where('end_date', '>=', now());
             },
-        ])->where('is_active', true);
+        ])->where('is_active', true)
+          ->where('is_hidden', false);
 
         // Search by name, SKU, or description
         if (!empty($searchQuery)) {
@@ -885,6 +891,7 @@ class ShopController extends Controller
             },
         ])
             ->where('is_active', true)
+            ->where('is_hidden', false)
             ->where('category_id', $category->id)
             ->orderBy('created_at', 'desc');
 
