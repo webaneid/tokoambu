@@ -127,7 +127,11 @@
       const container = document.getElementById('galleryGrid');
       if (!container) return;
 
+      // Clear content but preserve grid classes
       container.innerHTML = '';
+      if (!container.className.includes('grid')) {
+        container.className = 'grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-3 gap-4';
+      }
 
       if (this.galleryMedia.length === 0) {
         container.innerHTML = `

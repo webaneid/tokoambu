@@ -146,7 +146,7 @@
                                 Gallery Produk
                                 <span class="text-gray-400 text-xs font-normal">(Maksimal 5 foto)</span>
                             </label>
-                            <div id="galleryGrid" class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-5 gap-4">
+                            <div id="galleryGrid" class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-3 gap-4">
                                 <!-- Will be populated by JavaScript -->
                             </div>
                             <input type="hidden" name="gallery_media_ids" id="galleryMediaIds" value="{{ old('gallery_media_ids', json_encode($product->galleryMedia->pluck('id')->toArray())) }}">

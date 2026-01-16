@@ -249,7 +249,7 @@ class SettingController extends Controller
 
             $payload = [
                 'api_key' => $geminiKey ?? $existing?->api_key,
-                'model' => $geminiModelInput ?: ($existing->model ?? 'gemini-2.5-flash-image-preview'),
+                'model' => $geminiModelInput ?: ($existing->model ?? 'gemini-2.0-flash-exp-image-generation'),
                 'is_enabled' => $geminiEnabledInput ?? ($existing->is_enabled ?? true),
                 'default_bg_color' => $geminiBgInput ?: ($existing->default_bg_color ?? '#FFFFFF'),
                 'use_solid_background' => $geminiSolidInput ?? ($existing->use_solid_background ?? true),

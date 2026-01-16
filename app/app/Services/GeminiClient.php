@@ -73,6 +73,14 @@ class GeminiClient
         }
 
         $data = $response->json();
+
+        // Log response for debugging
+        \Log::info('Gemini API Response', [
+            'full_response' => $data,
+            'candidates' => data_get($data, 'candidates'),
+            'parts' => data_get($data, 'candidates.0.content.parts'),
+        ]);
+
         $parts = data_get($data, 'candidates.0.content.parts', []);
         $inlinePart = null;
         foreach ($parts as $part) {
@@ -84,6 +92,12 @@ class GeminiClient
 
         $encoded = $inlinePart['inlineData']['data'] ?? null;
         if (!$encoded) {
+            // Log detailed error info
+            \Log::error('Gemini missing image payload', [
+                'response' => $data,
+                'parts' => $parts,
+                'finish_reason' => data_get($data, 'candidates.0.finishReason'),
+            ]);
             throw new RuntimeException('Gemini API response missing image payload.');
         }
 
