@@ -26,14 +26,6 @@
       onEnhanceComplete:null
     },opts||{});
 
-    // Debug log
-    console.log('openMediaPicker called with:', {
-      listUrl: options.listUrl,
-      uploadUrl: options.uploadUrl,
-      type: options.type,
-      title: options.title
-    });
-
     if(!options.listUrl||!options.uploadUrl){
       console.error('Media picker: listUrl dan uploadUrl wajib diisi', options);
       return;
